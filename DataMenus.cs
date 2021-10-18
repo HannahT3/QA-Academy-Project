@@ -17,7 +17,7 @@ namespace NBS_Project.Menus
             switch (input.ToUpper())
             {
                 case "DATA ENTRY" or "DATAENTRY" or "1":
-                    SalesMenu.DataEntryMenu();
+                    DataEntryMenu();
                     break;
                 case "REPORTS" or "2":
                     Console.WriteLine("reports");
