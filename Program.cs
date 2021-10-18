@@ -14,7 +14,7 @@ namespace NBS_Project
     {
         static void Main(string[] args)
         {
-            DataMenus.EnterMenu();
+            SalesMenus.EnterMenu();
         }
 
 
