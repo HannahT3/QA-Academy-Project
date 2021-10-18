@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>NBS_Project</RootNamespace>
+    <StartupObject>NBS_Project.Program</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="C:\Users\hanna\OneDrive\QA Academy\Project\Program.cs" Link="Program.cs" />
+  </ItemGroup>
+
+</Project>
