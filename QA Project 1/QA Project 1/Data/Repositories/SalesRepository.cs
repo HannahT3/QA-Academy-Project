@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using QA_Project_1.Data.Model;
 
-namespace QA_Project_1.Services
+namespace QA_Project_1.Data.Repositories
 {
-    class SalesService
+    class SalesRepository
     {
-        private IList<Sales> sales; 
     }
 }

@@ -3,12 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using QA_Project_1.Data.Model;
+using QA_Project_1.Services;
 
 
 namespace QA_Project_1.Controllers
 {
     class SalesController
     {
+
+        private readonly SalesService salesService;
+
+        public SalesController(SalesService salesService)
+        {
+            this.salesService = salesService;
+        }
+
+
+
         internal void Create()
         {
             // MOVE TO WHILE IN MENU?
@@ -23,12 +35,17 @@ namespace QA_Project_1.Controllers
             Console.Write("> ");
             double price = Convert.ToDouble(Console.Read());
             DateTime saleDate = DateTime.Now;
-            Console.WriteLine($"Sale entered: \n name: {name}, quantity: {quantity}, price: {price}, date= {saleDate} ");
+
+
+            Sales toCreate = new Sales() { Name = name, Quantity = quantity, Price = price, SaleDate = saleDate };
+
+            Sales newSale = SalesService.Create(toCreate);
+            Console.WriteLine($"Sale entered: {to}} ");
             Console.WriteLine("Press any key to continue");
             Console.ReadKey();
            
         }
 
-        //Read option 
+        //Read option ,, b= int.TryParse(input, out int id); Exists method = if (b && itemService.Exists(id
     }
 }
