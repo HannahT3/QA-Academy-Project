@@ -1,0 +1,16 @@
+C:\Users\hanna\OneDrive\QA Academy\Project\QA Project 1\QA Project 1\bin\Debug\net5.0\QA Project 1.exe
+C:\Users\hanna\OneDrive\QA Academy\Project\QA Project 1\QA Project 1\bin\Debug\net5.0\QA Project 1.deps.json
+C:\Users\hanna\OneDrive\QA Academy\Project\QA Project 1\QA Project 1\bin\Debug\net5.0\QA Project 1.runtimeconfig.json
+C:\Users\hanna\OneDrive\QA Academy\Project\QA Project 1\QA Project 1\bin\Debug\net5.0\QA Project 1.runtimeconfig.dev.json
+C:\Users\hanna\OneDrive\QA Academy\Project\QA Project 1\QA Project 1\bin\Debug\net5.0\QA Project 1.dll
+C:\Users\hanna\OneDrive\QA Academy\Project\QA Project 1\QA Project 1\bin\Debug\net5.0\ref\QA Project 1.dll
+C:\Users\hanna\OneDrive\QA Academy\Project\QA Project 1\QA Project 1\bin\Debug\net5.0\QA Project 1.pdb
+C:\Users\hanna\OneDrive\QA Academy\Project\QA Project 1\QA Project 1\obj\Debug\net5.0\QA Project 1.csproj.AssemblyReference.cache
+C:\Users\hanna\OneDrive\QA Academy\Project\QA Project 1\QA Project 1\obj\Debug\net5.0\QA Project 1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hanna\OneDrive\QA Academy\Project\QA Project 1\QA Project 1\obj\Debug\net5.0\QA Project 1.AssemblyInfoInputs.cache
+C:\Users\hanna\OneDrive\QA Academy\Project\QA Project 1\QA Project 1\obj\Debug\net5.0\QA Project 1.AssemblyInfo.cs
+C:\Users\hanna\OneDrive\QA Academy\Project\QA Project 1\QA Project 1\obj\Debug\net5.0\QA Project 1.csproj.CoreCompileInputs.cache
+C:\Users\hanna\OneDrive\QA Academy\Project\QA Project 1\QA Project 1\obj\Debug\net5.0\QA Project 1.dll
+C:\Users\hanna\OneDrive\QA Academy\Project\QA Project 1\QA Project 1\obj\Debug\net5.0\ref\QA Project 1.dll
+C:\Users\hanna\OneDrive\QA Academy\Project\QA Project 1\QA Project 1\obj\Debug\net5.0\QA Project 1.pdb
+C:\Users\hanna\OneDrive\QA Academy\Project\QA Project 1\QA Project 1\obj\Debug\net5.0\QA Project 1.genruntimeconfig.cache
