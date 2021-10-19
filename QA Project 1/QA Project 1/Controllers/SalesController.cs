@@ -11,6 +11,7 @@ namespace QA_Project_1.Controllers
     {
         internal void Create()
         {
+            // MOVE TO WHILE IN MENU?
             Console.WriteLine("What is the product name?");
             Console.Write("> ");
             //user input of product name
@@ -22,8 +23,10 @@ namespace QA_Project_1.Controllers
             Console.Write("> ");
             double price = Convert.ToDouble(Console.Read());
             DateTime saleDate = DateTime.Now;
-            
             Console.WriteLine($"Sale entered: \n name: {name}, quantity: {quantity}, price: {price}, date= {saleDate} ");
+            Console.WriteLine("Press any key to continue");
+            Console.ReadKey();
+           
         }
     }
 }

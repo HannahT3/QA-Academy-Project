@@ -13,7 +13,8 @@ namespace QA_Project_1.Menus
         {
             Console.WriteLine("~~~~MAIN MENU~~~~");
 
-            Console.Write("Please pick an option: \n 1. Data entry \n 2. Reports \n 3. Quit");
+            Console.Write("Please pick an option: \n 1. Data entry \n 2. Reports \n 3. Quit \n");
+            Console.Write("> ");
             string input = Console.ReadLine();
             switch (input.ToUpper())
             {
@@ -37,6 +38,7 @@ namespace QA_Project_1.Menus
             SalesController controller = new SalesController();
             bool inMenu = true;
             string input;
+            Console.Clear();
 
             while (inMenu)
             {
