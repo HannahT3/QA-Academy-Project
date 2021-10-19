@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace QA_Project_1.Controllers
 {
-    class SalesController
+    public class SalesController
     {
         internal void Create()
         {
@@ -17,11 +17,13 @@ namespace QA_Project_1.Controllers
             string name = Console.ReadLine();
             Console.WriteLine("What is the quantity of the item?");
             Console.Write("> ");
-            int quantity = Console.ReadLine();
+            int quantity = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("What is the price of the product?");
             Console.Write("> ");
-            double price = Console.Read();
+            double price = Convert.ToDouble(Console.Read());
             DateTime saleDate = DateTime.Now;
+            
+            Console.WriteLine($"Sale entered: \n name: {name}, quantity: {quantity}, price: {price}, date= {saleDate} ");
         }
     }
 }

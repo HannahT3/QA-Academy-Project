@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using QA_Project_1.Controllers;
 
 namespace QA_Project_1.Menus
 {
@@ -33,6 +34,7 @@ namespace QA_Project_1.Menus
 
         public static void DataEntryMenu()
         {
+            SalesController controller = new SalesController();
             bool inMenu = true;
             string input;
 
@@ -48,7 +50,7 @@ namespace QA_Project_1.Menus
                 switch (input.ToUpper())
                 {
                     case "ENTERDATA" or "ENTER DATA" or "1":
-                        Console.WriteLine("dataentry");
+                        controller.Create();
                         break;
                     //case "MAINMENU" or "MAIN MENU" or "2":
                     // DataMenus.EnterMenu();
@@ -72,3 +74,4 @@ namespace QA_Project_1.Menus
 
     }
 }
+
