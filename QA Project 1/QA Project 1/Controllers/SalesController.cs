@@ -39,8 +39,8 @@ namespace QA_Project_1.Controllers
 
             Sales toCreate = new Sales() { Name = name, Quantity = quantity, Price = price, SaleDate = saleDate };
 
-            Sales newSale = SalesService.Create(toCreate);
-            Console.WriteLine($"Sale entered: {to}} ");
+            Sales newSale = salesService.Create(toCreate);
+            Console.WriteLine($"Sale entered: {newSale} ");
             Console.WriteLine("Press any key to continue");
             Console.ReadKey();
            

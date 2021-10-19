@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using QA_Project_1.Controllers;
+using QA_Project_1.Services;
+using QA_Project_1.Data.Repositories;
 
 namespace QA_Project_1.Menus
 {
@@ -35,7 +37,7 @@ namespace QA_Project_1.Menus
 
         public static void DataEntryMenu()
         {
-            SalesController controller = new SalesController();
+            SalesController controller = new SalesController(new SalesService(new SalesRepository()));
             bool inMenu = true;
             string input;
             Console.Clear();
