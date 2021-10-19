@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace QA_Project_1.Controllers
 {
-    public class SalesController
+    class SalesController
     {
         internal void Create()
         {
@@ -28,5 +28,7 @@ namespace QA_Project_1.Controllers
             Console.ReadKey();
            
         }
+
+        //Read option 
     }
 }
