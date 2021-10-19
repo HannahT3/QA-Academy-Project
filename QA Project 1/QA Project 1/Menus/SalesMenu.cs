@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using QA_Project_1.Controllers;
 using QA_Project_1.Services;
 using QA_Project_1.Data.Repositories;
+using QA_Project_1.Utils;
 
 namespace QA_Project_1.Menus
 {
@@ -37,11 +38,10 @@ namespace QA_Project_1.Menus
 
         public static void DataEntryMenu()
         {
-            SalesController controller = new SalesController(new SalesService(new SalesRepository()));
+            SalesController controller = new SalesController(new SalesService(new SalesRepository(SqlUtils.GetConnection())));
             bool inMenu = true;
             string input;
-            Console.Clear();
-
+            
             while (inMenu)
             {
                 //clear the screen
