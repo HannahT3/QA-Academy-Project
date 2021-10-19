@@ -11,7 +11,7 @@ namespace QA_Project_1.Data.Model
         public int SaleID { get; set; }
         public string Name { get; set; } //should this be public
         public int Quantity { get; set; }
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         public DateTime SaleDate { get; set; }
 
         public override string ToString()

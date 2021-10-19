@@ -25,7 +25,7 @@ namespace QA_Project_1.Menus
                     DataEntryMenu();
                     break;
                 case "REPORTS" or "2":
-                    Console.WriteLine("reports");
+                    ReportsMenu();
                     break;
                 case "QUIT" or "3":
                     break;
@@ -41,7 +41,7 @@ namespace QA_Project_1.Menus
             SalesController controller = new SalesController(new SalesService(new SalesRepository(SqlUtils.GetConnection())));
             bool inMenu = true;
             string input;
-            
+
             while (inMenu)
             {
                 //clear the screen
@@ -70,12 +70,52 @@ namespace QA_Project_1.Menus
 
 
 
+
+
             }
 
 
             //Console.WriteLine("Please enter the Product Name")
         }
 
+        public static void ReportsMenu()
+        {
+            SalesController controller = new SalesController(new SalesService(new SalesRepository(SqlUtils.GetConnection())));
+            bool inMenu = true;
+            string input;
+
+            while (inMenu)
+            {
+                //clear the screen
+                Console.Clear();
+                //print the menu
+                Console.WriteLine("~~~~REPORTS~~~~");
+                Console.WriteLine("1. View sales by year \n 2. View sales by month and year \n 3. View total sales by year \n 4. View Total sales by year and month \n 5.Quit");
+
+                input = Console.ReadLine();
+                switch (input.ToUpper())
+                {
+                    //ADD MORE CASE WORDING
+                    case "YEAR" or "1":
+                        controller.ReadByYear();
+                        break;
+                    case "2":
+                        break;
+                    case "3":
+                        break;
+                    case "4":
+                        break;
+                    case "QUIT" or "5":
+                        inMenu = false;
+                        break;
+
+
+
+
+                }
+            }
+        }
+
     }
-}
+    }
 

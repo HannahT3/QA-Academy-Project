@@ -36,12 +36,12 @@ namespace QA_Project_1.Services
             return toCreate;*/
         }
 
-        /*
-        internal IEnumerable<Sales> Read(){
-        return items}
+        
+        internal IEnumerable<Sales> ReadByYear()
+        {
+            return salesRepository.ReadByYear();
+        }
 
-        Can iterate over ienumerable but don't want to change
-
-        */
+        
     }
 }

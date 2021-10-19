@@ -1,4 +1,5 @@
 ﻿using QA_Project_1.Data.Model;
+using QA_Project_1.Data.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using QA_Project_1.Services;
 using MySql.Data.MySqlClient;
+using QA_Project_1.Controllers;
+using System.Data;
 
 namespace QA_Project_1.Data.Repositories
 {
@@ -33,6 +36,7 @@ namespace QA_Project_1.Data.Repositories
             
 
             Sales sale = new Sales();
+            sale.SaleID = (int)command.LastInsertedId;
             sale.Name = toCreate.Name;
             sale.Quantity = toCreate.Quantity;
             sale.Price = toCreate.Price;
@@ -43,9 +47,35 @@ namespace QA_Project_1.Data.Repositories
             return sale;
         }
 
-        /*internal IEnumerable<Sales> Read()
+       
+
+        internal IEnumerable<Sales> ReadByYear()
         {
-            return salesRepository.Read();
-        }*/
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = $"SELECT * FROM sales WHERE YEAR(saleDate) = 2021"; // Change to iput
+
+            connection.Open();
+            MySqlDataReader reader = command.ExecuteReader();
+
+            IList<Sales> sales = new List<Sales>();
+
+            while (reader.Read())
+            {
+                int id = reader.GetFieldValue<int>("saleID");
+                string name = reader.GetFieldValue<string>("prodName");
+                int quantity = reader.GetFieldValue<int>("quantity");
+                decimal price = reader.GetFieldValue<decimal>("price");
+                DateTime saleDate = reader.GetFieldValue<DateTime>("saleDate");
+
+                Sales sale = new Sales() { SaleID = id, Name = name, Quantity = quantity, Price = price, SaleDate = saleDate };
+                sales.Add(sale);
+ 
+            }
+
+            connection.Dispose();
+            return sales;
+
+
+        }
     }
 }

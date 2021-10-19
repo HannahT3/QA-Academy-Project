@@ -33,7 +33,7 @@ namespace QA_Project_1.Controllers
             int quantity = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("What is the price of the product?");
             Console.Write("> ");
-            double price = Convert.ToDouble(Console.Read());
+            decimal price = Convert.ToDecimal(Console.Read());
             DateTime saleDate = DateTime.Now;
 
 
@@ -45,6 +45,25 @@ namespace QA_Project_1.Controllers
             Console.ReadKey();
            
         }
+
+        internal void ReadByYear() 
+        {   //int year = Convert.ToInt32(Console.ReadLine());
+
+
+            IEnumerable<Sales> salesInDb = salesService.ReadByYear();
+            //Console.WriteLine("Please enter year:");
+            Console.Write("> ");
+            
+
+            foreach (var sale in salesInDb)
+            {
+                Console.WriteLine(sale);
+            }
+            Console.WriteLine("Press any key to continue");
+            Console.ReadKey();
+
+        }
+
 
         //Read option ,, b= int.TryParse(input, out int id); Exists method = if (b && itemService.Exists(id
     }
