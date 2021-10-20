@@ -52,27 +52,23 @@ namespace QA_Project_1.Controllers
             Console.WriteLine("Please enter the year you wish to view:");
             Console.Write("> ");
             string year = Console.ReadLine();
-            bool selectedYear = DateTime.TryParse(year, out DateTime saleYear);
+            bool selectedYear = int.TryParse(year, out int saleYear);
+            IEnumerable<Sales> salesInDb = salesService.ReadByYear(saleYear);
             if (selectedYear) // &&msalesservice.Exists(selectedyear
             {
-                IEnumerable<Sales> salesInDb = salesService.ReadByYear(saleYear);
-                salesService.ReadByYear(saleYear);
+                
+                foreach (var sale in salesInDb)
+                {
+                    Console.WriteLine(sale);
+                }
+                Console.WriteLine("Press any key to continue");
+                Console.ReadKey(); 
             }
-            //IEnumerable<Sales> salesInDb = salesService.ReadByYear();
-            //Console.WriteLine("Please enter year:");
-            Console.Write("> ");
             
-
-            /*foreach (var sale in salesInDb)
-            {
-                Console.WriteLine(sale);
-            }
-            Console.WriteLine("Press any key to continue");
-            Console.ReadKey();*/
 
         }
 
 
-        //Read option ,, b= int.TryParse(input, out int id); Exists method = if (b && itemService.Exists(id
+       
     }
 }

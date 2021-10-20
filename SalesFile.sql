@@ -1,7 +1,5 @@
 SHOW databases;
-CREATE database IF NOT EXISTS salesDb;
-
-USE salesDb;
-CREATE TABLE IF NOT EXISTS sales(saleId INT AUTO_INCREMENT PRIMARY KEY, prodName VARCHAR(128) NOT NULL, quantity INT NOT NULL, price DECIMAL(6,2), saleDate DATETIME NOT NULL);
+USE salesdb;
 DESCRIBE sales;
-SELECT * FROM sales;
+SELECT * FROM sales WHERE YEAR(saleDate) = 2021;
+SELECT * FROM sales WHERE YEAR(DATE(saleDate)) = 2021;

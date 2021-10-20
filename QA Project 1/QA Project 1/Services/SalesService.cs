@@ -33,7 +33,7 @@ namespace QA_Project_1.Services
         }
 
         
-        internal IEnumerable<Sales> ReadByYear(DateTime saleYear)
+        internal IEnumerable<Sales> ReadByYear(int saleYear)
         {
 
             return salesRepository.ReadByYear(saleYear);

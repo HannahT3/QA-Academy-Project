@@ -29,7 +29,7 @@ namespace QA_Project_1.Data.Repositories
             counter++;
             sales.Add(toCreate);*/
             MySqlCommand command = connection.CreateCommand();
-            command.CommandText = $"INSERT INTO sales(prodName, quantity, price, saleDate) VALUES('{toCreate.Name}', '{toCreate.Quantity}', '{toCreate.Price}', '{toCreate.SaleDate.ToString("yyyy-MM-dd HH:mm:ss")}')";
+            command.CommandText = $"INSERT INTO sales(prodName, quantity, price, saleDate) VALUES('{toCreate.Name}', '{toCreate.Quantity}', '{toCreate.Price}', '{toCreate.SaleDate.ToString("yyyy-MM-dd")}')";
 
             connection.Open();
             command.ExecuteNonQuery();
@@ -49,10 +49,10 @@ namespace QA_Project_1.Data.Repositories
 
        
 
-        internal IEnumerable<Sales> ReadByYear(DateTime saleYear)
+        internal IEnumerable<Sales> ReadByYear(int saleYear)
         {
             MySqlCommand command = connection.CreateCommand();
-            command.CommandText = $"SELECT * FROM sales WHERE YEAR(DATE(saleDate)) = {saleYear}"; // Change to iput
+            command.CommandText = $"SELECT * FROM sales WHERE YEAR(saleDate) = {saleYear}"; // PREPARED STATEMENTS
 
             connection.Open();
             MySqlDataReader reader = command.ExecuteReader();
