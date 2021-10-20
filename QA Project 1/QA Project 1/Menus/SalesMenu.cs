@@ -59,6 +59,7 @@ namespace QA_Project_1.Menus
                     //case "MAINMENU" or "MAIN MENU" or "2":
                     // DataMenus.EnterMenu();
                     //break;
+                    //case "MAINMENU" or 
                     case "QUIT" or "2":
                         inMenu = false;
                         break;
@@ -92,6 +93,8 @@ namespace QA_Project_1.Menus
                 Console.WriteLine("~~~~REPORTS~~~~");
                 Console.WriteLine("1. View sales by year \n 2. View sales by month and year \n 3. View total sales by year \n 4. View Total sales by year and month \n 5.Quit");
 
+                Console.WriteLine("Please enter your choice");
+                Console.Write("> ");
                 input = Console.ReadLine();
                 switch (input.ToUpper())
                 {

@@ -52,7 +52,7 @@ namespace QA_Project_1.Data.Repositories
         internal IEnumerable<Sales> ReadByYear(DateTime saleYear)
         {
             MySqlCommand command = connection.CreateCommand();
-            command.CommandText = $"SELECT * FROM sales WHERE YEAR(saleDate) = {saleYear}"; // Change to iput
+            command.CommandText = $"SELECT * FROM sales WHERE YEAR(DATE(saleDate)) = {saleYear}"; // Change to iput
 
             connection.Open();
             MySqlDataReader reader = command.ExecuteReader();
