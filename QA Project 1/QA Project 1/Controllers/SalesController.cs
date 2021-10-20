@@ -97,6 +97,31 @@ namespace QA_Project_1.Controllers
 
         }
 
+        internal void TotalSalesYear()
+        {
+
+            Console.WriteLine("Please enter the year you wish to view:");
+            
+            Console.Write("> ");
+            string year = Console.ReadLine();
+
+            bool selectedYear = int.TryParse(year, out int saleYear);
+           
+            IEnumerable<Sales> salesInDb = salesService.TotalSalesYear(saleYear);
+            if (selectedYear) // &&msalesservice.Exists(selectedyear
+            {
+
+                foreach (var sale in salesInDb)
+                {
+                    Console.WriteLine(sale);
+                }
+                Console.WriteLine("Press any key to continue");
+                Console.ReadKey();
+            }
+
+
+        }
+
 
 
     }

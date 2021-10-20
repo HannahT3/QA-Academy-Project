@@ -104,7 +104,38 @@ namespace QA_Project_1.Data.Repositories
             connection.Dispose();
             return sales;
 
-
+            
         }
+
+        internal IEnumerable<Sales> TotalSalesYear(int saleYear)
+        {
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = $"SELECT SUM(price) FROM sales WHERE YEAR(DATE(saleDate)) = {saleYear}"; // PREPARED STATEMENTS
+
+            connection.Open();
+            MySqlDataReader reader = command.ExecuteReader();
+
+            IList<Sales> sales = new List<Sales>();
+
+            while (reader.Read())
+            {
+                // int id = reader.GetFieldValue<int>("saleId");
+                // string name = reader.GetFieldValue<string>("prodName");
+                //int quantity = reader.GetFieldValue<int>("quantity");
+                decimal price = reader.GetFieldValue<decimal>("price");
+                // DateTime saleID = reader.GetFieldValue<DateTime>("saleDate");
+
+                //Sales sale = new Sales() { SaleID = id, Name = name, Quantity = quantity, Price = price, SaleDate = saleID };
+                Sales sale = new Sales() { Price = price };
+                sales.Add(sale);
+            }
+               
+
+            connection.Dispose();
+            return sales;
+
+            
+        }
+
     }
 }

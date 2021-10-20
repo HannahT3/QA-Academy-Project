@@ -106,6 +106,7 @@ namespace QA_Project_1.Menus
                         controller.ReadByMonth();
                         break;
                     case "3":
+                        controller.TotalSalesYear();
                         break;
                     case "4":
                         break;

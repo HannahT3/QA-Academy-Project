@@ -7,3 +7,4 @@ INSERT INTO sales(prodName, quantity, price, saleDate) VALUES("bottle", "2", "5.
 
 SELECT * FROM sales;
 SELECT * FROM sales WHERE YEAR(DATE(saleDate)) = 2021;
+SELECT SUM(quantity) sales WHERE YEAR(DATE(saleDate)) = 2021;
