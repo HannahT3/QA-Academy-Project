@@ -103,6 +103,7 @@ namespace QA_Project_1.Menus
                         controller.ReadByYear();
                         break;
                     case "2":
+                        controller.ReadByMonth();
                         break;
                     case "3":
                         break;

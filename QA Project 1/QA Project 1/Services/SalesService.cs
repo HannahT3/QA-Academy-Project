@@ -39,6 +39,12 @@ namespace QA_Project_1.Services
             return salesRepository.ReadByYear(saleYear);
         }
 
-        
+        internal IEnumerable<Sales> ReadByMonth(int saleYear, int saleMonth)
+        {
+
+            return salesRepository.ReadByMonth(saleYear, saleMonth);
+        }
+
+
     }
 }

@@ -68,7 +68,36 @@ namespace QA_Project_1.Controllers
 
         }
 
+        internal void ReadByMonth()
+        {
 
-       
+            Console.WriteLine("Please enter the month and year you wish to view:");
+            Console.WriteLine("Month:");
+            Console.Write("> ");
+            string month = Console.ReadLine();
+
+            Console.WriteLine("Year:");
+            Console.Write("> ");
+            string year = Console.ReadLine();
+
+            bool selectedYear = int.TryParse(year, out int saleYear);
+            bool selectedMonth = int.TryParse(month, out int saleMonth);
+            IEnumerable<Sales> salesInDb = salesService.ReadByMonth(saleYear, saleMonth);
+            if (selectedYear && selectedMonth) // &&msalesservice.Exists(selectedyear
+            {
+
+                foreach (var sale in salesInDb)
+                {
+                    Console.WriteLine(sale);
+                }
+                Console.WriteLine("Press any key to continue");
+                Console.ReadKey();
+            }
+
+
+        }
+
+
+
     }
 }
