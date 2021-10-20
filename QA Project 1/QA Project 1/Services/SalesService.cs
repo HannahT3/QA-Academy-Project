@@ -29,15 +29,11 @@ namespace QA_Project_1.Services
         {
             Sales newSale = salesRepository.Create(toCreate); // separating business logic with access logic
             return newSale;
-           /* toCreate.SaleID = counter;
-            counter++;
-            sales.Add(toCreate);
-
-            return toCreate;*/
+           
         }
 
         
-        internal IEnumerable<Sales> ReadByYear()
+        internal IEnumerable<Sales> ReadByYear(DateTime saleYear)
         {
             return salesRepository.ReadByYear();
         }

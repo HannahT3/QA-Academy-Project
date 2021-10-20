@@ -47,20 +47,24 @@ namespace QA_Project_1.Controllers
         }
 
         internal void ReadByYear() 
-        {   //int year = Convert.ToInt32(Console.ReadLine());
-
-
-            IEnumerable<Sales> salesInDb = salesService.ReadByYear();
+        {   
+            string year = Console.ReadLine();
+            bool selectedYear = DateTime.TryParse(year, out DateTime saleYear);
+            if (selectedYear) // &&msalesservice.Exists(selectedyear
+            {
+                salesService.ReadByYear(saleYear);
+            }
+            //IEnumerable<Sales> salesInDb = salesService.ReadByYear();
             //Console.WriteLine("Please enter year:");
             Console.Write("> ");
             
 
-            foreach (var sale in salesInDb)
+            /*foreach (var sale in salesInDb)
             {
                 Console.WriteLine(sale);
             }
             Console.WriteLine("Press any key to continue");
-            Console.ReadKey();
+            Console.ReadKey();*/
 
         }
 

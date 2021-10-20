@@ -49,10 +49,10 @@ namespace QA_Project_1.Data.Repositories
 
        
 
-        internal IEnumerable<Sales> ReadByYear()
+        internal IEnumerable<Sales> ReadByYear(DateTime saleYear)
         {
             MySqlCommand command = connection.CreateCommand();
-            command.CommandText = $"SELECT * FROM sales WHERE YEAR(saleDate) = 2021"; // Change to iput
+            command.CommandText = $"SELECT * FROM sales WHERE YEAR(saleDate) = {saleYear}"; // Change to iput
 
             connection.Open();
             MySqlDataReader reader = command.ExecuteReader();
@@ -65,9 +65,9 @@ namespace QA_Project_1.Data.Repositories
                 string name = reader.GetFieldValue<string>("prodName");
                 int quantity = reader.GetFieldValue<int>("quantity");
                 decimal price = reader.GetFieldValue<decimal>("price");
-                DateTime saleDate = reader.GetFieldValue<DateTime>("saleDate");
+                DateTime saleID = reader.GetFieldValue<DateTime>("saleDate");
 
-                Sales sale = new Sales() { SaleID = id, Name = name, Quantity = quantity, Price = price, SaleDate = saleDate };
+                Sales sale = new Sales() { SaleID = id, Name = name, Quantity = quantity, Price = price, SaleDate = saleID };
                 sales.Add(sale);
  
             }
