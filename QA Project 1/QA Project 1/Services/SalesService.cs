@@ -11,23 +11,18 @@ namespace QA_Project_1.Services
     class SalesService
     {      
         
-        //private IList<Sales> sales;
         private readonly SalesRepository salesRepository;
-        //constructor to initialise item repository
+        
         
         public SalesService(SalesRepository salesRepository)
         {
             this.salesRepository = salesRepository;
         }
 
-        /*public SalesService()
-        {
-            sales = new List<Sales>();
-        }
-*/
+        
         internal Sales Create(Sales toCreate)
         {
-            Sales newSale = salesRepository.Create(toCreate); // separating business logic with access logic
+            Sales newSale = salesRepository.Create(toCreate); 
             return newSale;
            
         }
@@ -45,10 +40,10 @@ namespace QA_Project_1.Services
             return salesRepository.ReadByMonth(saleYear, saleMonth);
         }
 
-        internal IEnumerable<Sales> TotalSalesYear(int saleYear)
+        internal double TotalSalesYear(int totalYear)
         {
 
-            return salesRepository.TotalSalesYear(saleYear);
+            return salesRepository.TotalSalesYear(totalYear);
         }
 
 

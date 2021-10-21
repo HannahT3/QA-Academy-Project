@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using QA_Project_1.Data.Model;
 using QA_Project_1.Services;
+using QA_Project_1.Data.Repositories;
 
 
 namespace QA_Project_1.Controllers
@@ -107,18 +108,15 @@ namespace QA_Project_1.Controllers
 
             bool selectedYear = int.TryParse(year, out int saleYear);
            
-            IEnumerable<Sales> salesInDb = salesService.TotalSalesYear(saleYear);
-            if (selectedYear) // &&msalesservice.Exists(selectedyear
+            
+            if (selectedYear) // && exists condition
             {
 
-                foreach (var sale in salesInDb)
-                {
-                    Console.WriteLine(sale);
-                }
-                Console.WriteLine("Press any key to continue");
-                Console.ReadKey();
+                Console.WriteLine($"Total number of sales is: {salesService.TotalSalesYear(saleYear)}");
             }
 
+            Console.WriteLine("Press any key to continue");
+            Console.ReadKey();
 
         }
 

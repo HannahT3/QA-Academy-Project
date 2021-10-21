@@ -25,13 +25,18 @@ namespace QA_Project_1.Data.Repositories
         
         internal Sales Create(Sales toCreate)
         {
-            /*toCreate.SaleID = counter;
-            counter++;
-            sales.Add(toCreate);*/
+            
             MySqlCommand command = connection.CreateCommand();
-            command.CommandText = $"INSERT INTO sales(prodName, quantity, price, saleDate) VALUES('{toCreate.Name}', '{toCreate.Quantity}', '{toCreate.Price}', '{toCreate.SaleDate.ToString("yyyy-MM-dd")}')";
+            command.CommandText = "INSERT INTO sales(prodName, quantity, price, saleDate) VALUES(@Name, @Quantity, @Price, @SaleDate)";
+            command.Parameters.AddWithValue("@Name", toCreate.Name);
+            command.Parameters.AddWithValue("@Quantity", toCreate.Quantity);
+            command.Parameters.AddWithValue("@Price", toCreate.Price);
+            command.Parameters.AddWithValue("@SaleDate", toCreate.SaleDate);
+
+            //toCreate.SaleDate.ToString("yyyy-MM-dd")
 
             connection.Open();
+            command.Prepare();
             command.ExecuteNonQuery();
             
 
@@ -52,9 +57,11 @@ namespace QA_Project_1.Data.Repositories
         internal IEnumerable<Sales> ReadByYear(int saleYear)
         {
             MySqlCommand command = connection.CreateCommand();
-            command.CommandText = $"SELECT * FROM sales WHERE YEAR(saleDate) = {saleYear}"; // PREPARED STATEMENTS
+            command.CommandText = "SELECT * FROM sales WHERE YEAR(saleDate) = @saleYear";
+            command.Parameters.AddWithValue("@saleYear", saleYear);
 
             connection.Open();
+            command.Prepare();
             MySqlDataReader reader = command.ExecuteReader();
 
             IList<Sales> sales = new List<Sales>();
@@ -81,9 +88,12 @@ namespace QA_Project_1.Data.Repositories
         internal IEnumerable<Sales> ReadByMonth(int saleYear, int saleMonth)
         {
             MySqlCommand command = connection.CreateCommand();
-            command.CommandText = $"SELECT * FROM sales WHERE YEAR(DATE(saleDate)) = {saleYear} AND MONTH(DATE(saleDate))= {saleMonth}"; // PREPARED STATEMENTS
+            command.CommandText = "SELECT * FROM sales WHERE YEAR(DATE(saleDate)) = @saleYear AND MONTH(DATE(saleDate))= @saleMonth";
+            command.Parameters.AddWithValue("saleYear", saleYear);
+            command.Parameters.AddWithValue("saleMonth", saleMonth);
 
             connection.Open();
+            command.Prepare();
             MySqlDataReader reader = command.ExecuteReader();
 
             IList<Sales> sales = new List<Sales>();
@@ -107,32 +117,24 @@ namespace QA_Project_1.Data.Repositories
             
         }
 
-        internal IEnumerable<Sales> TotalSalesYear(int saleYear)
+        internal double TotalSalesYear(int saleYear)
         {
+            
+            
             MySqlCommand command = connection.CreateCommand();
-            command.CommandText = $"SELECT SUM(price) FROM sales WHERE YEAR(DATE(saleDate)) = {saleYear}"; // PREPARED STATEMENTS
+            command.CommandText = "SELECT SUM(quantity*price) FROM sales WHERE YEAR(DATE(saleDate)) = {@saleYear}"; //  ADD PREPARED STATEMENTS
+            command.Parameters.AddWithValue("@saleYear", saleYear);
+            
 
             connection.Open();
-            MySqlDataReader reader = command.ExecuteReader();
+            command.Prepare();
+            var total = command.ExecuteScalar();
+            double totalYear = Convert.ToDouble(total);
 
-            IList<Sales> sales = new List<Sales>();
-
-            while (reader.Read())
-            {
-                // int id = reader.GetFieldValue<int>("saleId");
-                // string name = reader.GetFieldValue<string>("prodName");
-                //int quantity = reader.GetFieldValue<int>("quantity");
-                decimal price = reader.GetFieldValue<decimal>("price");
-                // DateTime saleID = reader.GetFieldValue<DateTime>("saleDate");
-
-                //Sales sale = new Sales() { SaleID = id, Name = name, Quantity = quantity, Price = price, SaleDate = saleID };
-                Sales sale = new Sales() { Price = price };
-                sales.Add(sale);
-            }
-               
-
+                                
+            
             connection.Dispose();
-            return sales;
+            return totalYear;
 
             
         }
