@@ -109,6 +109,7 @@ namespace QA_Project_1.Menus
                         controller.TotalSalesYear();
                         break;
                     case "4":
+                        controller.TotalSalesMonth();
                         break;
                     case "QUIT" or "5":
                         inMenu = false;

@@ -120,6 +120,34 @@ namespace QA_Project_1.Controllers
 
         }
 
+        internal void TotalSalesMonth()
+        {
+
+            Console.WriteLine("Please enter the year you wish to view:");
+
+            Console.Write("> ");
+            string year = Console.ReadLine();
+
+            Console.WriteLine("Please enter the month you wish to view:");
+
+            Console.Write("> ");
+            string month = Console.ReadLine();
+
+            bool selectedYear = int.TryParse(year, out int saleYear);
+            bool selectedMonth = int.TryParse(month, out int saleMonth);
+
+
+            if (selectedYear && selectedMonth) // && exists condition
+            {
+
+                Console.WriteLine($"Total number of sales is: {salesService.TotalSalesMonth(saleYear, saleMonth)}");
+            }
+
+            Console.WriteLine("Press any key to continue");
+            Console.ReadKey();
+
+        }
+
 
 
     }

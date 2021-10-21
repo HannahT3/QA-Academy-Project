@@ -89,8 +89,8 @@ namespace QA_Project_1.Data.Repositories
         {
             MySqlCommand command = connection.CreateCommand();
             command.CommandText = "SELECT * FROM sales WHERE YEAR(DATE(saleDate)) = @saleYear AND MONTH(DATE(saleDate))= @saleMonth";
-            command.Parameters.AddWithValue("saleYear", saleYear);
-            command.Parameters.AddWithValue("saleMonth", saleMonth);
+            command.Parameters.AddWithValue("@saleYear", saleYear);
+            command.Parameters.AddWithValue("@saleMonth", saleMonth);
 
             connection.Open();
             command.Prepare();
@@ -137,6 +137,28 @@ namespace QA_Project_1.Data.Repositories
             return totalYear;
 
             
+        }
+
+        internal double TotalSalesMonth(int saleYear, int saleMonth)
+        {
+
+
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT SUM(quantity*price) FROM sales WHERE YEAR(DATE(saleDate)) = @saleYear AND MONTH(DATE(saleDate))= @saleMonth"; 
+            command.Parameters.AddWithValue("@saleYear", saleYear);
+            command.Parameters.AddWithValue("@saleMonth", saleMonth);
+
+            connection.Open();
+            command.Prepare();
+            var total = command.ExecuteScalar();
+            double totalMonth = Convert.ToDouble(total);
+
+
+
+            connection.Dispose();
+            return totalMonth;
+
+
         }
 
     }
