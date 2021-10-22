@@ -46,10 +46,10 @@ namespace QA_Project_1.Services
             return salesRepository.TotalSalesYear(totalYear);
         }
 
-        internal double TotalSalesMonth(int saleYear, int saleMonth)
+        internal double TotalSalesMonth(int year, int month)
         {
 
-            return salesRepository.TotalSalesMonth(saleYear, saleMonth);
+            return salesRepository.TotalSalesMonth(year, month);
         }
 
 

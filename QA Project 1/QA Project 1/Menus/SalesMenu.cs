@@ -29,6 +29,8 @@ namespace QA_Project_1.Menus
                     break;
                 case "QUIT" or "3":
                     break;
+
+
                     /* ERROR HANDLING
                         Console.WriteLine("Please enter a valid option!");
                         //loop back

@@ -144,22 +144,76 @@ namespace QA_Project_1.Controllers
                 Console.Write("> ");
                 string year = Console.ReadLine();
 
-            bool selectedYear = int.TryParse(year, out int saleYear);
-           
-            IEnumerable<Sales> salesInDb = salesService.TotalSalesYear(saleYear);
-            if (selectedYear) // &&msalesservice.Exists(selectedyear
-            {
+                bool selectedYear = int.TryParse(year, out int saleYear);
 
-                foreach (var sale in salesInDb)
+                
+                if (selectedYear) // &&msalesservice.Exists(selectedyear
                 {
-                    Console.WriteLine(sale);
+
+                    Console.WriteLine($"Total number of sales is: {salesService.TotalSalesYear(saleYear)}");
+
                 }
+
                 Console.WriteLine("Press any key to continue");
+                Console.ReadKey();
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine(e.Message);
+
+                Console.WriteLine("Press any key to continue . .");
                 Console.ReadKey();
             }
 
 
         }
+
+        internal void TotalSalesMonth()
+        {
+            try
+            {
+                Console.WriteLine("Please enter the year you wish to view:");
+
+                Console.Write("> ");
+                int year = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("Please enter the month you wish to view:");
+
+                Console.Write("> ");
+                int month = Convert.ToInt32(Console.ReadLine()); //error handiling - words, consider converting words to numerical
+
+                bool selectedYear = Convert.ToBoolean(year);
+                bool selectedMonth = Convert.ToBoolean(month);
+
+
+                if (selectedYear && selectedMonth) // && exists condition
+                {
+
+                    Console.WriteLine($"Total number of sales is: {salesService.TotalSalesMonth(year, month)}");
+                }
+
+                Console.WriteLine("Press any key to continue . .");
+                Console.ReadKey();
+
+
+            }
+            catch(FormatException e)
+            {
+                Console.WriteLine(e.Message);
+
+                Console.WriteLine("Press any key to continue . .");
+                Console.ReadKey();
+            }
+           /* catch (ArgumentNullException e)
+            {
+
+                Console.Write("Exception Thrown: ");
+                Console.Write("{0}", e.GetType(), e.Message);
+            }
+           */
+
+        }
+
 
 
 
