@@ -24,67 +24,130 @@ namespace QA_Project_1.Controllers
 
         internal void Create()
         {
-            // MOVE TO WHILE IN MENU?
-            Console.WriteLine("What is the product name?");
-            Console.Write("> ");
-            //user input of product name
-            string name = Console.ReadLine();
-            Console.WriteLine("What is the quantity of the item?");
-            Console.Write("> ");
-            int quantity = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("What is the price of the product?");
-            Console.Write("> ");
-            decimal price = Convert.ToDecimal(Console.Read());
-            DateTime saleDate = DateTime.Now;
+
+            try
+            {
+                Console.WriteLine("What is the product name?");
+                Console.Write("> ");
+                //user input of product name
+                string name = Console.ReadLine();
+                Console.WriteLine("What is the quantity of the item?");
+                Console.Write("> ");
+                int quantity = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("What is the price of the product?");
+                Console.Write("> ");
+                decimal price = Convert.ToDecimal(Console.Read());
+                DateTime saleDate = DateTime.Now;
 
 
-            Sales toCreate = new Sales() { Name = name, Quantity = quantity, Price = price, SaleDate = saleDate };
+                Sales toCreate = new Sales() { Name = name, Quantity = quantity, Price = price, SaleDate = saleDate };
 
-            Sales newSale = salesService.Create(toCreate);
-            Console.WriteLine($"Sale entered: {newSale} ");
-            Console.WriteLine("Press any key to continue");
-            Console.ReadKey();
+                Sales newSale = salesService.Create(toCreate);
+                Console.WriteLine($"Sale entered: {newSale} ");
+                Console.WriteLine("Press any key to continue");
+                Console.ReadKey();
+            }
+            catch (FormatException e)
+            {
+                
+                Console.WriteLine(e.Message);
+                
+                Console.WriteLine("Press any key to continue . .");
+                Console.ReadKey();
+
+            }
+            
            
         }
 
         internal void ReadByYear() 
         {
-            
-            Console.WriteLine("Please enter the year you wish to view:");
-            Console.Write("> ");
-            string year = Console.ReadLine();
-            bool selectedYear = int.TryParse(year, out int saleYear);
-            IEnumerable<Sales> salesInDb = salesService.ReadByYear(saleYear);
-            if (selectedYear) // &&msalesservice.Exists(selectedyear
+            try
             {
-                
-                foreach (var sale in salesInDb)
+                Console.WriteLine("Please enter the year you wish to view:");
+                Console.Write("> ");
+                string year = Console.ReadLine();
+                bool selectedYear = int.TryParse(year, out int saleYear);
+                IEnumerable<Sales> salesInDb = salesService.ReadByYear(saleYear);
+                if (selectedYear) // &&msalesservice.Exists(selectedyear
                 {
-                    Console.WriteLine(sale);
+                
+                    foreach (var sale in salesInDb)
+                    {
+                        Console.WriteLine(sale);
+                    }
+                    Console.WriteLine("Press any key to continue");
+                    Console.ReadKey(); 
                 }
-                Console.WriteLine("Press any key to continue");
-                Console.ReadKey(); 
+
             }
-            
+            catch (FormatException e)
+            {
+                Console.WriteLine(e.Message);
+
+                Console.WriteLine("Press any key to continue . .");
+                Console.ReadKey();
+
+            }
+
+
 
         }
 
         internal void ReadByMonth()
         {
+            try
+            {
+                    Console.WriteLine("Please enter the month and year you wish to view:");
+                    Console.WriteLine("Month:");
+                    Console.Write("> ");
+                    string month = Console.ReadLine();
 
-            Console.WriteLine("Please enter the month and year you wish to view:");
-            Console.WriteLine("Month:");
-            Console.Write("> ");
-            string month = Console.ReadLine();
+                    Console.WriteLine("Year:");
+                    Console.Write("> ");
+                    string year = Console.ReadLine();
 
-            Console.WriteLine("Year:");
-            Console.Write("> ");
-            string year = Console.ReadLine();
+                    bool selectedYear = int.TryParse(year, out int saleYear);
+                    bool selectedMonth = int.TryParse(month, out int saleMonth);
+                    IEnumerable<Sales> salesInDb = salesService.ReadByMonth(saleYear, saleMonth);
+                    if (selectedYear && selectedMonth) // &&msalesservice.Exists(selectedyear
+                    {
+
+                        foreach (var sale in salesInDb)
+                        {
+                            Console.WriteLine(sale);
+                        }
+                        Console.WriteLine("Press any key to continue");
+                        Console.ReadKey();
+                    }
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine(e.Message);
+
+                Console.WriteLine("Press any key to continue . .");
+                Console.ReadKey();
+
+            }
+
+
+
+        }
+
+        internal void TotalSalesYear()
+        {
+
+            try
+            {
+                Console.WriteLine("Please enter the year you wish to view:");
+
+                Console.Write("> ");
+                string year = Console.ReadLine();
 
             bool selectedYear = int.TryParse(year, out int saleYear);
-            bool selectedMonth = int.TryParse(month, out int saleMonth);
-            IEnumerable<Sales> salesInDb = salesService.ReadByMonth(saleYear, saleMonth);
-            if (selectedYear && selectedMonth) // &&msalesservice.Exists(selectedyear
+           
+            IEnumerable<Sales> salesInDb = salesService.TotalSalesYear(saleYear);
+            if (selectedYear) // &&msalesservice.Exists(selectedyear
             {
 
                 foreach (var sale in salesInDb)
@@ -95,56 +158,6 @@ namespace QA_Project_1.Controllers
                 Console.ReadKey();
             }
 
-
-        }
-
-        internal void TotalSalesYear()
-        {
-
-            Console.WriteLine("Please enter the year you wish to view:");
-            
-            Console.Write("> ");
-            string year = Console.ReadLine();
-
-            bool selectedYear = int.TryParse(year, out int saleYear);
-           
-            
-            if (selectedYear) // && exists condition
-            {
-
-                Console.WriteLine($"Total number of sales is: {salesService.TotalSalesYear(saleYear)}");
-            }
-
-            Console.WriteLine("Press any key to continue");
-            Console.ReadKey();
-
-        }
-
-        internal void TotalSalesMonth()
-        {
-
-            Console.WriteLine("Please enter the year you wish to view:");
-
-            Console.Write("> ");
-            string year = Console.ReadLine();
-
-            Console.WriteLine("Please enter the month you wish to view:");
-
-            Console.Write("> ");
-            string month = Console.ReadLine(); //error handiling - words, consider converting words to numerical
-
-            bool selectedYear = int.TryParse(year, out int saleYear);
-            bool selectedMonth = int.TryParse(month, out int saleMonth);
-
-
-            if (selectedYear && selectedMonth) // && exists condition
-            {
-
-                Console.WriteLine($"Total number of sales is: {salesService.TotalSalesMonth(saleYear, saleMonth)}");
-            }
-
-            Console.WriteLine("Press any key to continue");
-            Console.ReadKey();
 
         }
 
