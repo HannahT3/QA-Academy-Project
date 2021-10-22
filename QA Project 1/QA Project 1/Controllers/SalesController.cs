@@ -131,7 +131,7 @@ namespace QA_Project_1.Controllers
             Console.WriteLine("Please enter the month you wish to view:");
 
             Console.Write("> ");
-            string month = Console.ReadLine();
+            string month = Console.ReadLine(); //error handiling - words, consider converting words to numerical
 
             bool selectedYear = int.TryParse(year, out int saleYear);
             bool selectedMonth = int.TryParse(month, out int saleMonth);
