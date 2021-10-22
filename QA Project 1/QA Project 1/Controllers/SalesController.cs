@@ -56,8 +56,16 @@ namespace QA_Project_1.Controllers
                 Console.ReadKey();
 
             }
-            
-           
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine(e.Message);
+
+                Console.WriteLine("Press any key to continue . .");
+                Console.ReadKey();
+
+            }
+
+
         }
 
         internal void ReadByYear() 
@@ -89,6 +97,14 @@ namespace QA_Project_1.Controllers
                 Console.ReadKey();
 
             }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine(e.Message);
+
+                Console.WriteLine("Press any key to continue . .");
+                Console.ReadKey();
+
+            }
 
 
 
@@ -101,13 +117,13 @@ namespace QA_Project_1.Controllers
                     Console.WriteLine("Please enter the month and year you wish to view:");
                     Console.WriteLine("Month:");
                     Console.Write("> ");
-                    string month = Console.ReadLine();
+                    int month = Convert.ToInt32(Console.ReadLine());
 
-                    Console.WriteLine("Year:");
+                Console.WriteLine("Year:");
                     Console.Write("> ");
-                    string year = Console.ReadLine();
+                    int year = Convert.ToInt32(Console.ReadLine());
 
-                    bool selectedYear = int.TryParse(year, out int saleYear);
+                bool selectedYear = int.TryParse(year, out int saleYear);
                     bool selectedMonth = int.TryParse(month, out int saleMonth);
                     IEnumerable<Sales> salesInDb = salesService.ReadByMonth(saleYear, saleMonth);
                     if (selectedYear && selectedMonth) // &&msalesservice.Exists(selectedyear
@@ -129,6 +145,14 @@ namespace QA_Project_1.Controllers
                 Console.ReadKey();
 
             }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine(e.Message);
+
+                Console.WriteLine("Press any key to continue . .");
+                Console.ReadKey();
+
+            }
 
 
 
@@ -142,15 +166,15 @@ namespace QA_Project_1.Controllers
                 Console.WriteLine("Please enter the year you wish to view:");
 
                 Console.Write("> ");
-                string year = Console.ReadLine();
+                int totalYear = Convert.ToInt32(Console.ReadLine());
 
-                bool selectedYear = int.TryParse(year, out int saleYear);
-
+                bool selectedYear = Convert.ToBoolean(totalYear);
                 
-                if (selectedYear) // &&msalesservice.Exists(selectedyear
-                {
 
-                    Console.WriteLine($"Total number of sales is: {salesService.TotalSalesYear(saleYear)}");
+                if (selectedYear)
+                { 
+
+                    Console.WriteLine($"Total number of sales is: {salesService.TotalSalesYear(totalYear)}");
 
                 }
 
@@ -163,6 +187,14 @@ namespace QA_Project_1.Controllers
 
                 Console.WriteLine("Press any key to continue . .");
                 Console.ReadKey();
+            }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine(e.Message);
+
+                Console.WriteLine("Press any key to continue . .");
+                Console.ReadKey();
+
             }
 
 
@@ -186,7 +218,7 @@ namespace QA_Project_1.Controllers
                 bool selectedMonth = Convert.ToBoolean(month);
 
 
-                if (selectedYear && selectedMonth) // && exists condition
+                if (selectedYear && selectedMonth) 
                 {
 
                     Console.WriteLine($"Total number of sales is: {salesService.TotalSalesMonth(year, month)}");
@@ -204,13 +236,15 @@ namespace QA_Project_1.Controllers
                 Console.WriteLine("Press any key to continue . .");
                 Console.ReadKey();
             }
-           /* catch (ArgumentNullException e)
+            catch (ArgumentNullException e)
             {
+                Console.WriteLine(e.Message);
 
-                Console.Write("Exception Thrown: ");
-                Console.Write("{0}", e.GetType(), e.Message);
+                Console.WriteLine("Press any key to continue . .");
+                Console.ReadKey();
+
             }
-           */
+            
 
         }
 
