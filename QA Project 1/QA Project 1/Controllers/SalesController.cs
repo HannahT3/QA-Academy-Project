@@ -74,9 +74,9 @@ namespace QA_Project_1.Controllers
             {
                 Console.WriteLine("Please enter the year you wish to view:");
                 Console.Write("> ");
-                string year = Console.ReadLine();
-                bool selectedYear = int.TryParse(year, out int saleYear);
-                IEnumerable<Sales> salesInDb = salesService.ReadByYear(saleYear);
+                int year = Convert.ToInt32(Console.ReadLine());
+                bool selectedYear = Convert.ToBoolean(year);
+                IEnumerable<Sales> salesInDb = salesService.ReadByYear(year);
                 if (selectedYear) // &&msalesservice.Exists(selectedyear
                 {
                 
@@ -118,14 +118,15 @@ namespace QA_Project_1.Controllers
                     Console.WriteLine("Month:");
                     Console.Write("> ");
                     int month = Convert.ToInt32(Console.ReadLine());
+                    bool selectedMonth = Convert.ToBoolean(month);  
 
                 Console.WriteLine("Year:");
                     Console.Write("> ");
                     int year = Convert.ToInt32(Console.ReadLine());
-
-                bool selectedYear = int.TryParse(year, out int saleYear);
-                    bool selectedMonth = int.TryParse(month, out int saleMonth);
-                    IEnumerable<Sales> salesInDb = salesService.ReadByMonth(saleYear, saleMonth);
+                    bool selectedYear = Convert.ToBoolean(year);
+                   // bool selectedYear = int.TryParse(year, out int saleYear);
+                  //  bool selectedMonth = int.TryParse(month, out int saleMonth);
+                    IEnumerable<Sales> salesInDb = salesService.ReadByMonth(year, month);
                     if (selectedYear && selectedMonth) // &&msalesservice.Exists(selectedyear
                     {
 
@@ -166,15 +167,15 @@ namespace QA_Project_1.Controllers
                 Console.WriteLine("Please enter the year you wish to view:");
 
                 Console.Write("> ");
-                int totalYear = Convert.ToInt32(Console.ReadLine());
+                int totalSalesYear = Convert.ToInt32(Console.ReadLine());
 
-                bool selectedYear = Convert.ToBoolean(totalYear);
+                bool selectedYear = Convert.ToBoolean(totalSalesYear);
                 
 
                 if (selectedYear)
                 { 
 
-                    Console.WriteLine($"Total number of sales is: {salesService.TotalSalesYear(totalYear)}");
+                    Console.WriteLine($"Total number of sales is: {salesService.TotalSalesYear(totalSalesYear)}");
 
                 }
 

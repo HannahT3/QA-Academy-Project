@@ -54,11 +54,11 @@ namespace QA_Project_1.Data.Repositories
 
        
 
-        internal IEnumerable<Sales> ReadByYear(int saleYear)
+        internal IEnumerable<Sales> ReadByYear(int year)
         {
             MySqlCommand command = connection.CreateCommand();
             command.CommandText = "SELECT * FROM sales WHERE YEAR(saleDate) = @saleYear";
-            command.Parameters.AddWithValue("@saleYear", saleYear);
+            command.Parameters.AddWithValue("@saleYear", year);
 
             connection.Open();
             command.Prepare();
@@ -85,12 +85,12 @@ namespace QA_Project_1.Data.Repositories
 
         }
 
-        internal IEnumerable<Sales> ReadByMonth(int saleYear, int saleMonth)
+        internal IEnumerable<Sales> ReadByMonth(int year, int month)
         {
             MySqlCommand command = connection.CreateCommand();
             command.CommandText = "SELECT * FROM sales WHERE YEAR(DATE(saleDate)) = @saleYear AND MONTH(DATE(saleDate))= @saleMonth";
-            command.Parameters.AddWithValue("@saleYear", saleYear);
-            command.Parameters.AddWithValue("@saleMonth", saleMonth);
+            command.Parameters.AddWithValue("@saleYear", year);
+            command.Parameters.AddWithValue("@saleMonth", month);
 
             connection.Open();
             command.Prepare();
@@ -117,13 +117,13 @@ namespace QA_Project_1.Data.Repositories
             
         }
 
-        internal double TotalSalesYear(int saleYear)
+        internal double TotalSalesYear(int totalSalesYear)
         {
             
             
             MySqlCommand command = connection.CreateCommand();
             command.CommandText = "SELECT SUM(quantity*price) FROM sales WHERE YEAR(DATE(saleDate)) = {@saleYear}"; //  ADD PREPARED STATEMENTS
-            command.Parameters.AddWithValue("@saleYear", saleYear);
+            command.Parameters.AddWithValue("@saleYear", totalSalesYear);
             
 
             connection.Open();

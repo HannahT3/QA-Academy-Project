@@ -28,22 +28,22 @@ namespace QA_Project_1.Services
         }
 
         
-        internal IEnumerable<Sales> ReadByYear(int saleYear)
+        internal IEnumerable<Sales> ReadByYear(int year)
         {
 
-            return salesRepository.ReadByYear(saleYear);
+            return salesRepository.ReadByYear(year);
         }
 
-        internal IEnumerable<Sales> ReadByMonth(int saleYear, int saleMonth)
+        internal IEnumerable<Sales> ReadByMonth(int year, int month)
         {
 
-            return salesRepository.ReadByMonth(saleYear, saleMonth);
+            return salesRepository.ReadByMonth(year, month);
         }
 
-        internal double TotalSalesYear(int totalYear)
+        internal double TotalSalesYear(int totalSalesYear)
         {
 
-            return salesRepository.TotalSalesYear(totalYear);
+            return salesRepository.TotalSalesYear(totalSalesYear);
         }
 
         internal double TotalSalesMonth(int year, int month)
