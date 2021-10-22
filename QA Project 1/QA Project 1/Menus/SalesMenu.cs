@@ -93,7 +93,7 @@ namespace QA_Project_1.Menus
                 Console.Clear();
                 //print the menu
                 Console.WriteLine("~~~~REPORTS~~~~");
-                Console.WriteLine("1. View sales by year \n 2. View sales by month and year \n 3. View total sales by year \n 4. View Total sales by year and month \n 5.Quit");
+                Console.WriteLine("1. View sales by year \n 2. View sales by month and year \n 3. View total sales by year \n 4. View Total sales by year and month \n 5. View all sales between two specified years \n 6. View all sales between two specified dates (year, month) \n 7.Quit");
 
                 Console.WriteLine("Please enter your choice");
                 Console.Write("> ");
@@ -113,7 +113,13 @@ namespace QA_Project_1.Menus
                     case "4":
                         controller.TotalSalesMonth();
                         break;
-                    case "QUIT" or "5":
+                    case "5":
+                        controller.SalesBetweenYears();
+                        break;
+                    case "6":
+                        controller.SalesBetweenMonths();
+                        break;
+                    case "QUIT" or "7":
                         inMenu = false;
                         break;
 

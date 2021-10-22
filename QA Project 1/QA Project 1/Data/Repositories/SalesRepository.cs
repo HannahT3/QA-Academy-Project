@@ -161,5 +161,71 @@ namespace QA_Project_1.Data.Repositories
 
         }
 
+        internal IEnumerable<Sales> SalesBetweenYears(int year1, int year2)
+        {
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT * FROM sales WHERE YEAR(DATE(saleDate)) >= @year1 AND YEAR(DATE(saleDate)) <= @year2";
+            command.Parameters.AddWithValue("@year1", year1);
+            command.Parameters.AddWithValue("@year2", year2);
+
+            connection.Open();
+            command.Prepare();
+            MySqlDataReader reader = command.ExecuteReader();
+
+            IList<Sales> sales = new List<Sales>();
+
+            while (reader.Read())
+            {
+                int id = reader.GetFieldValue<int>("saleID");
+                string name = reader.GetFieldValue<string>("prodName");
+                int quantity = reader.GetFieldValue<int>("quantity");
+                decimal price = reader.GetFieldValue<decimal>("price");
+                DateTime saleID = reader.GetFieldValue<DateTime>("saleDate");
+
+                Sales sale = new Sales() { SaleID = id, Name = name, Quantity = quantity, Price = price, SaleDate = saleID };
+                sales.Add(sale);
+
+            }
+
+            connection.Dispose();
+            return sales;
+
+
+        }
+
+        internal IEnumerable<Sales> SalesBetweenMonths(int year1, int month1, int year2, int month2)
+        {
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT * FROM sales WHERE YEAR(DATE(saleDate))>=@year1 AND MONTH(DATE(saleDate))>=@month1 AND YEAR(DATE(saleDate))<=@year2 MONTH(DATE(saleDate))<=@month2";
+            command.Parameters.AddWithValue("@year1", year1);
+            command.Parameters.AddWithValue("@month1", month1);
+            command.Parameters.AddWithValue("@year2", year2);
+            command.Parameters.AddWithValue("@month2", month2);
+
+            connection.Open();
+            command.Prepare();
+            MySqlDataReader reader = command.ExecuteReader();
+
+            IList<Sales> sales = new List<Sales>();
+
+            while (reader.Read())
+            {
+                int id = reader.GetFieldValue<int>("saleID");
+                string name = reader.GetFieldValue<string>("prodName");
+                int quantity = reader.GetFieldValue<int>("quantity");
+                decimal price = reader.GetFieldValue<decimal>("price");
+                DateTime saleID = reader.GetFieldValue<DateTime>("saleDate");
+
+                Sales sale = new Sales() { SaleID = id, Name = name, Quantity = quantity, Price = price, SaleDate = saleID };
+                sales.Add(sale);
+
+            }
+
+            connection.Dispose();
+            return sales;
+
+
+        }
+
     }
 }

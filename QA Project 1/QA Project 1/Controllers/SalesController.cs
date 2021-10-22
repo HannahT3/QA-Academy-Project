@@ -249,6 +249,110 @@ namespace QA_Project_1.Controllers
 
         }
 
+        internal void SalesBetweenYears()
+        {
+            try
+            {
+                //Console.WriteLine("Please enter the firstmonth and year you wish to view:");
+                Console.WriteLine("Initial year:");
+                Console.Write("> ");
+                int year1 = Convert.ToInt32(Console.ReadLine());
+                bool firstYear = Convert.ToBoolean(year1);
+
+                Console.WriteLine("Final year:");
+                Console.Write("> ");
+                int year2 = Convert.ToInt32(Console.ReadLine());
+                bool secondYear = Convert.ToBoolean(year2);
+                
+                IEnumerable<Sales> salesInDb = salesService.SalesBetweenYears(year1, year2);
+                if (firstYear && secondYear) // &&msalesservice.Exists(selectedyear
+                {
+
+                    foreach (var sale in salesInDb)
+                    {
+                        Console.WriteLine(sale);
+                    }
+                    Console.WriteLine("Press any key to continue");
+                    Console.ReadKey();
+                }
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine(e.Message);
+
+                Console.WriteLine("Press any key to continue . .");
+                Console.ReadKey();
+
+            }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine(e.Message);
+
+                Console.WriteLine("Press any key to continue . .");
+                Console.ReadKey();
+
+            }
+
+
+
+        }
+
+        internal void SalesBetweenMonths()
+        {
+            try
+            {
+                //Console.WriteLine("Please enter the firstmonth and year you wish to view:");
+                Console.WriteLine("Initial year:");
+                Console.Write("> ");
+                int year1 = Convert.ToInt32(Console.ReadLine());
+                bool firstYear = Convert.ToBoolean(year1);
+                Console.WriteLine("Initial month:");
+                Console.Write("> ");
+                int month1 = Convert.ToInt32(Console.ReadLine());
+                bool firstMonth = Convert.ToBoolean(month1);
+
+
+                Console.WriteLine("Final year:");
+                Console.Write("> ");
+                int year2 = Convert.ToInt32(Console.ReadLine());
+                bool secondYear = Convert.ToBoolean(year2);
+                Console.WriteLine("Final month:");
+                Console.Write("> ");
+                int month2 = Convert.ToInt32(Console.ReadLine());
+                bool secondMonth = Convert.ToBoolean(month2);
+
+                IEnumerable<Sales> salesInDb = salesService.SalesBetweenMonths(year1, month1, year2, month2);
+                if (firstYear && firstMonth && secondYear && secondMonth) // &&msalesservice.Exists(selectedyear
+                {
+
+                    foreach (var sale in salesInDb)
+                    {
+                        Console.WriteLine(sale);
+                    }
+                    Console.WriteLine("Press any key to continue");
+                    Console.ReadKey();
+                }
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine(e.Message);
+
+                Console.WriteLine("Press any key to continue . .");
+                Console.ReadKey();
+
+            }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine(e.Message);
+
+                Console.WriteLine("Press any key to continue . .");
+                Console.ReadKey();
+
+            }
+
+
+
+        }
 
 
 

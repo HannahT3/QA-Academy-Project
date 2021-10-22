@@ -52,6 +52,17 @@ namespace QA_Project_1.Services
             return salesRepository.TotalSalesMonth(year, month);
         }
 
+        internal IEnumerable<Sales> SalesBetweenYears(int year1, int year2)
+        {
+
+            return salesRepository.SalesBetweenYears(year1, year2);
+        }
+
+        internal IEnumerable<Sales> SalesBetweenMonths(int year1, int month1, int year2, int month2)
+        {
+
+            return salesRepository.SalesBetweenMonths(year1, month1, year2, month2);
+        }
 
     }
 }
