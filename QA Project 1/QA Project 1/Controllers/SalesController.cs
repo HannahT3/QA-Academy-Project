@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using QA_Project_1.Data.Model;
 using QA_Project_1.Services;
+using QA_Project_1.Data.Repositories;
 
 
 namespace QA_Project_1.Controllers
@@ -107,18 +108,43 @@ namespace QA_Project_1.Controllers
 
             bool selectedYear = int.TryParse(year, out int saleYear);
            
-            IEnumerable<Sales> salesInDb = salesService.TotalSalesYear(saleYear);
-            if (selectedYear) // &&msalesservice.Exists(selectedyear
+            
+            if (selectedYear) // && exists condition
             {
 
-                foreach (var sale in salesInDb)
-                {
-                    Console.WriteLine(sale);
-                }
-                Console.WriteLine("Press any key to continue");
-                Console.ReadKey();
+                Console.WriteLine($"Total number of sales is: {salesService.TotalSalesYear(saleYear)}");
             }
 
+            Console.WriteLine("Press any key to continue");
+            Console.ReadKey();
+
+        }
+
+        internal void TotalSalesMonth()
+        {
+
+            Console.WriteLine("Please enter the year you wish to view:");
+
+            Console.Write("> ");
+            string year = Console.ReadLine();
+
+            Console.WriteLine("Please enter the month you wish to view:");
+
+            Console.Write("> ");
+            string month = Console.ReadLine(); //error handiling - words, consider converting words to numerical
+
+            bool selectedYear = int.TryParse(year, out int saleYear);
+            bool selectedMonth = int.TryParse(month, out int saleMonth);
+
+
+            if (selectedYear && selectedMonth) // && exists condition
+            {
+
+                Console.WriteLine($"Total number of sales is: {salesService.TotalSalesMonth(saleYear, saleMonth)}");
+            }
+
+            Console.WriteLine("Press any key to continue");
+            Console.ReadKey();
 
         }
 
