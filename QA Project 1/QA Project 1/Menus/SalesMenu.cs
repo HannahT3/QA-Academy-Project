@@ -116,10 +116,13 @@ namespace QA_Project_1.Menus
                     case "5":
                         controller.SalesBetweenYears();
                         break;
-                    case "6":
-                        controller.SalesBetweenMonths();
+                    /* case "6":
+                         controller.SalesBetweenMonths();
+                         break; */
+                    case "7":
+                        controller.AverageGivenMonth();
                         break;
-                    case "QUIT" or "7":
+                    case "QUIT" or "8":
                         inMenu = false;
                         break;
 

@@ -297,41 +297,91 @@ namespace QA_Project_1.Controllers
 
         }
 
-        internal void SalesBetweenMonths()
+        /* internal void SalesBetweenMonths()
+         {
+             try
+             {
+                 //Console.WriteLine("Please enter the firstmonth and year you wish to view:");
+                 Console.WriteLine("Initial year:");
+                 Console.Write("> ");
+                 int year1 = Convert.ToInt32(Console.ReadLine());
+                 bool firstYear = Convert.ToBoolean(year1);
+                 Console.WriteLine("Initial month:");
+                 Console.Write("> ");
+                 int month1 = Convert.ToInt32(Console.ReadLine());
+                 bool firstMonth = Convert.ToBoolean(month1);
+
+
+                 Console.WriteLine("Final year:");
+                 Console.Write("> ");
+                 int year2 = Convert.ToInt32(Console.ReadLine());
+                 bool secondYear = Convert.ToBoolean(year2);
+                 Console.WriteLine("Final month:");
+                 Console.Write("> ");
+                 int month2 = Convert.ToInt32(Console.ReadLine());
+                 bool secondMonth = Convert.ToBoolean(month2);
+
+                 IEnumerable<Sales> salesInDb = salesService.SalesBetweenMonths(year1, month1, year2, month2);
+                 if (firstYear && firstMonth && secondYear && secondMonth) // &&msalesservice.Exists(selectedyear
+                 {
+
+                     foreach (var sale in salesInDb)
+                     {
+                         Console.WriteLine(sale);
+                     }
+                     Console.WriteLine("Press any key to continue");
+                     Console.ReadKey();
+                 }
+             }
+             catch (FormatException e)
+             {
+                 Console.WriteLine(e.Message);
+
+                 Console.WriteLine("Press any key to continue . .");
+                 Console.ReadKey();
+
+             }
+             catch (ArgumentNullException e)
+             {
+                 Console.WriteLine(e.Message);
+
+                 Console.WriteLine("Press any key to continue . .");
+                 Console.ReadKey();
+
+             }
+
+
+
+         } */
+
+        internal void AverageGivenMonth()
         {
             try
             {
-                //Console.WriteLine("Please enter the firstmonth and year you wish to view:");
-                Console.WriteLine("Initial year:");
+                Console.WriteLine("Please enter the month you wish to view:");
+
                 Console.Write("> ");
-                int year1 = Convert.ToInt32(Console.ReadLine());
-                bool firstYear = Convert.ToBoolean(year1);
-                Console.WriteLine("Initial month:");
+                int month = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("Please enter the past ...  previous years you wish to view:");
+
                 Console.Write("> ");
-                int month1 = Convert.ToInt32(Console.ReadLine());
-                bool firstMonth = Convert.ToBoolean(month1);
+                int yearsPrev = Convert.ToInt32(Console.ReadLine());
+
+                bool selectedMonth = Convert.ToBoolean(month);
+                bool previousYears = Convert.ToBoolean(yearsPrev);
 
 
-                Console.WriteLine("Final year:");
-                Console.Write("> ");
-                int year2 = Convert.ToInt32(Console.ReadLine());
-                bool secondYear = Convert.ToBoolean(year2);
-                Console.WriteLine("Final month:");
-                Console.Write("> ");
-                int month2 = Convert.ToInt32(Console.ReadLine());
-                bool secondMonth = Convert.ToBoolean(month2);
-
-                IEnumerable<Sales> salesInDb = salesService.SalesBetweenMonths(year1, month1, year2, month2);
-                if (firstYear && firstMonth && secondYear && secondMonth) // &&msalesservice.Exists(selectedyear
+                if (selectedMonth && previousYears)
                 {
 
-                    foreach (var sale in salesInDb)
-                    {
-                        Console.WriteLine(sale);
-                    }
-                    Console.WriteLine("Press any key to continue");
-                    Console.ReadKey();
+                    Console.WriteLine($"Average sales for the past {yearsPrev} years during {month}: {salesService.AverageGivenMonth(month, yearsPrev)}");
                 }
+
+                Console.WriteLine("Press any key to continue . .");
+                Console.ReadKey();
+
+
             }
             catch (FormatException e)
             {
@@ -339,7 +389,6 @@ namespace QA_Project_1.Controllers
 
                 Console.WriteLine("Press any key to continue . .");
                 Console.ReadKey();
-
             }
             catch (ArgumentNullException e)
             {
@@ -349,7 +398,6 @@ namespace QA_Project_1.Controllers
                 Console.ReadKey();
 
             }
-
 
 
         }

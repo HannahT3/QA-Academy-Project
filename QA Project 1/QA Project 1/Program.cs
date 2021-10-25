@@ -18,6 +18,8 @@ namespace QA_Project_1
              * error handling
              * clean up code
              * make more aesthetically pleasing
+             * Redo menu
+             * Avg given month phrasing
              */
 
             

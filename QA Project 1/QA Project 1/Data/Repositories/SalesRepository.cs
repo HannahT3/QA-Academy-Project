@@ -193,7 +193,7 @@ namespace QA_Project_1.Data.Repositories
 
         }
 
-        internal IEnumerable<Sales> SalesBetweenMonths(int year1, int month1, int year2, int month2)
+        /*internal IEnumerable<Sales> SalesBetweenMonths(int year1, int month1, int year2, int month2)
         {
             MySqlCommand command = connection.CreateCommand();
             command.CommandText = "SELECT * FROM sales WHERE YEAR(DATE(saleDate))>=@year1 AND MONTH(DATE(saleDate))>=@month1 AND YEAR(DATE(saleDate))<=@year2 MONTH(DATE(saleDate))<=@month2";
@@ -225,7 +225,30 @@ namespace QA_Project_1.Data.Repositories
             return sales;
 
 
-        }
+        }*/
 
+
+      
+        internal double AverageGivenMonth(int month, int yearsPrev)
+        {
+
+
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT AVG(quantity* price) FROM sales WHERE YEAR(DATE(saleDate)) = YEAR(CURDATE()) - @years AND MONTH(saleDate)=@month";
+            command.Parameters.AddWithValue("@years", yearsPrev);
+            command.Parameters.AddWithValue("@month", month);
+
+            connection.Open();
+            command.Prepare();
+            var avg = command.ExecuteScalar();
+            double avgMonth = Convert.ToDouble(avg);
+
+
+
+            connection.Dispose();
+            return avgMonth;
+
+
+        }
     }
 }
