@@ -122,7 +122,12 @@ namespace QA_Project_1.Menus
                     case "7":
                         controller.AverageGivenMonth();
                         break;
-                    case "QUIT" or "8":
+                    /*case 8 -- avg sales per month
+                     */
+                    case "9":
+                        controller.MaxMonth();
+                        break;
+                    case "QUIT" or "10":
                         inMenu = false;
                         break;
 

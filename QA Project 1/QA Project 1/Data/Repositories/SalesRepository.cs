@@ -250,5 +250,31 @@ namespace QA_Project_1.Data.Repositories
 
 
         }
+
+        internal double MaxMonth(int year)
+        {
+
+
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT MAX(quantity*price), MONTH(saleDate) FROM sales  WHERE YEAR(DATE(saleDate)) = @year;";
+            command.Parameters.AddWithValue("@year", year);
+            
+
+            connection.Open();
+            command.Prepare();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                double value = reader.GetFieldValue<double>("MAX(quantity*price)");
+                int month = reader.GetFieldValue<int>("MONTH(saleDate");
+
+
+            }
+
+            connection.Dispose();
+            return value, month;
+
+
+        }
     }
 }

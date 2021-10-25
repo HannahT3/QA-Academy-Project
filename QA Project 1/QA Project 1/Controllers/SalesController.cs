@@ -402,7 +402,47 @@ namespace QA_Project_1.Controllers
 
         }
 
+        internal void MaxMonth()
+        {
+            try
+            {
+                Console.WriteLine("Please enter the year you wish to view:");
 
+                Console.Write("> ");
+                int year = Convert.ToInt32(Console.ReadLine());
+
+                bool selectedYear = Convert.ToBoolean(year);
+                
+
+                if (selectedYear)
+                {
+
+                    Console.WriteLine($"In {year}, the highest sales were made in {salesService.MaxMonth(year)}");
+                }
+
+                Console.WriteLine("Press any key to continue . .");
+                Console.ReadKey();
+
+
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine(e.Message);
+
+                Console.WriteLine("Press any key to continue . .");
+                Console.ReadKey();
+            }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine(e.Message);
+
+                Console.WriteLine("Press any key to continue . .");
+                Console.ReadKey();
+
+            }
+
+
+        }
 
     }
 }

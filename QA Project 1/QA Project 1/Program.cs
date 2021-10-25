@@ -20,6 +20,7 @@ namespace QA_Project_1
              * make more aesthetically pleasing
              * Redo menu
              * Avg given month phrasing
+             * average sales per month for a specifed year
              */
 
             
