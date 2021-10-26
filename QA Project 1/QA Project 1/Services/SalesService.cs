@@ -70,12 +70,12 @@ namespace QA_Project_1.Services
             return salesRepository.AverageGivenMonth(month, yearsPrev);
         }
 
-        internal double MaxMonth(int year)
+      /*  internal double MaxMonth(int year)
         {
 
             return salesRepository.MaxMonth(year);
         }
-
+*/
 
     }
 }

@@ -14,8 +14,8 @@ namespace QA_Project_1
             Menus.SalesMenu.EnterMenu();
 
             /*TO ADD (post requirements): 
-             * prepared statements
-             * error handling
+             
+             
              * clean up code
              * make more aesthetically pleasing
              * Redo menu

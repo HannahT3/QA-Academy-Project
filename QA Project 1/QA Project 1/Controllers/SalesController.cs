@@ -115,7 +115,7 @@ namespace QA_Project_1.Controllers
             try
             {
                     Console.WriteLine("Please enter the month and year you wish to view:");
-                    Console.WriteLine("Month:");
+                    Console.WriteLine("Month (numeric, e.g. for January enter 1):");
                     Console.Write("> ");
                     int month = Convert.ToInt32(Console.ReadLine());
                     bool selectedMonth = Convert.ToBoolean(month);  
@@ -140,6 +140,7 @@ namespace QA_Project_1.Controllers
             }
             catch (FormatException e)
             {
+
                 Console.WriteLine(e.Message);
 
                 Console.WriteLine("Press any key to continue . .");
@@ -175,7 +176,7 @@ namespace QA_Project_1.Controllers
                 if (selectedYear)
                 { 
 
-                    Console.WriteLine($"Total number of sales is: {salesService.TotalSalesYear(totalSalesYear)}");
+                    Console.WriteLine($"Total number of sales is during {totalSalesYear} is: {salesService.TotalSalesYear(totalSalesYear)}");
 
                 }
 
@@ -207,12 +208,12 @@ namespace QA_Project_1.Controllers
             {
                 Console.WriteLine("Please enter the year you wish to view:");
 
-                Console.Write("> ");
+                Console.Write("Year > ");
                 int year = Convert.ToInt32(Console.ReadLine());
 
                 Console.WriteLine("Please enter the month you wish to view:");
 
-                Console.Write("> ");
+                Console.Write(" Month > ");
                 int month = Convert.ToInt32(Console.ReadLine()); //error handiling - words, consider converting words to numerical
 
                 bool selectedYear = Convert.ToBoolean(year);
@@ -222,7 +223,7 @@ namespace QA_Project_1.Controllers
                 if (selectedYear && selectedMonth) 
                 {
 
-                    Console.WriteLine($"Total number of sales is: {salesService.TotalSalesMonth(year, month)}");
+                    Console.WriteLine($"Total number of sales during {NumToMonth(month)} in {year} is: {salesService.TotalSalesMonth(year, month)}");
                 }
 
                 Console.WriteLine("Press any key to continue . .");
@@ -255,12 +256,12 @@ namespace QA_Project_1.Controllers
             {
                 //Console.WriteLine("Please enter the firstmonth and year you wish to view:");
                 Console.WriteLine("Initial year:");
-                Console.Write("> ");
+                Console.Write("Initial Year > ");
                 int year1 = Convert.ToInt32(Console.ReadLine());
                 bool firstYear = Convert.ToBoolean(year1);
 
                 Console.WriteLine("Final year:");
-                Console.Write("> ");
+                Console.Write("Final Year > ");
                 int year2 = Convert.ToInt32(Console.ReadLine());
                 bool secondYear = Convert.ToBoolean(year2);
                 
@@ -375,7 +376,7 @@ namespace QA_Project_1.Controllers
                 if (selectedMonth && previousYears)
                 {
 
-                    Console.WriteLine($"Average sales for the past {yearsPrev} years during {month}: {salesService.AverageGivenMonth(month, yearsPrev)}");
+                    Console.WriteLine($"Average sales for the past {yearsPrev} years during {NumToMonth(month)}: {salesService.AverageGivenMonth(month, yearsPrev)}");
                 }
 
                 Console.WriteLine("Press any key to continue . .");
@@ -402,47 +403,151 @@ namespace QA_Project_1.Controllers
 
         }
 
-        internal void MaxMonth()
+        /* internal void MaxMonth()
+         {
+             try
+             {
+                 Console.WriteLine("Please enter the year you wish to view:");
+
+                 Console.Write("> ");
+                 int year = Convert.ToInt32(Console.ReadLine());
+
+                 bool selectedYear = Convert.ToBoolean(year);
+
+
+                 if (selectedYear)
+                 {
+
+                     Console.WriteLine($"In {year}, the highest sales were made in {salesService.MaxMonth(year)}");
+                 }
+
+                 Console.WriteLine("Press any key to continue . .");
+                 Console.ReadKey();
+
+
+             }
+             catch (FormatException e)
+             {
+                 Console.WriteLine(e.Message);
+
+                 Console.WriteLine("Press any key to continue . .");
+                 Console.ReadKey();
+             }
+             catch (ArgumentNullException e)
+             {
+                 Console.WriteLine(e.Message);
+
+                 Console.WriteLine("Press any key to continue . .");
+                 Console.ReadKey();
+
+             }
+
+
+         }*/
+        internal static string NumToMonth(int numMonth)
         {
-            try
+            string monthName;
+
+            switch (numMonth)
             {
-                Console.WriteLine("Please enter the year you wish to view:");
 
-                Console.Write("> ");
-                int year = Convert.ToInt32(Console.ReadLine());
+                case 1:
+                    monthName = "January";
+                    break;
+                case 2:
+                    monthName = "February";
+                    break;
+                case 3:
+                    monthName = "March";
+                    break;
+                case 4:
+                    monthName = "April";
+                    break;
+                case 5:
+                    monthName = "May";
+                    break;
+                case 6:
+                    monthName = "June";
+                    break;
+                case 7:
+                    monthName = "July";
+                    break;
+                case 8:
+                    monthName = "August";
+                    break;
+                case 9:
+                    monthName = "September";
+                    break;
+                case 10:
+                    monthName = "October";
+                    break;
+                case 11:
+                    monthName = "November";
+                    break;
+                case 12:
+                    monthName = "December";
+                    break;
+                default:
+                    monthName = "numMonth not valid";
+                    break;
 
-                bool selectedYear = Convert.ToBoolean(year);
-                
-
-                if (selectedYear)
-                {
-
-                    Console.WriteLine($"In {year}, the highest sales were made in {salesService.MaxMonth(year)}");
-                }
-
-                Console.WriteLine("Press any key to continue . .");
-                Console.ReadKey();
 
 
             }
-            catch (FormatException e)
-            {
-                Console.WriteLine(e.Message);
-
-                Console.WriteLine("Press any key to continue . .");
-                Console.ReadKey();
-            }
-            catch (ArgumentNullException e)
-            {
-                Console.WriteLine(e.Message);
-
-                Console.WriteLine("Press any key to continue . .");
-                Console.ReadKey();
-
-            }
-
-
+            return monthName;
         }
 
+        internal static int MonthNameToNum(string monthName)
+        {
+            int num;
+
+            switch (monthName.ToUpper())
+            {
+
+                case "JAN" or "JANUARY":
+                    num = 1;
+                    break;
+                case "FEB" or "FEBRUARY":
+                    num = 2;
+                    break;
+                case "MAR" or "MARCH":
+                    num = 3;
+                    break;
+                case "APR" or "APRIL":
+                    num = 4;
+                    break;
+                case "MAY":
+                    num=5;
+                    break;
+                case "JUNE":
+                    num=6;
+                    break;
+                case "JUL" or "JULY":
+                    num = 7;
+                    break;
+                case "AUG" or "AUGUST":
+                    num = 8;
+                    break;
+                case "SEPT" or "SEP" or "SEPTEMBER":
+                    num = 9;
+                    break;
+                case "OCT" or "OCTOBER":
+                    num=10;
+                    break;
+                case "NOV" or "NOVEMBER":
+                    num = 11;
+                    break;
+                case "DEC" or "DECEMBER":
+                    num = 12;
+                    break;
+                default:
+                    num = 0;
+                    break;
+
+
+
+            }
+            return num;
+        }
     }
 }

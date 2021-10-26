@@ -234,7 +234,7 @@ namespace QA_Project_1.Data.Repositories
 
 
             MySqlCommand command = connection.CreateCommand();
-            command.CommandText = "SELECT AVG(quantity* price) FROM sales WHERE YEAR(DATE(saleDate)) = YEAR(CURDATE()) - @years AND MONTH(saleDate)=@month";
+            command.CommandText = "SELECT AVG(quantity* price) FROM sales WHERE YEAR(DATE(saleDate)) >= YEAR(CURDATE()) - @years AND MONTH(saleDate)=@month";
             command.Parameters.AddWithValue("@years", yearsPrev);
             command.Parameters.AddWithValue("@month", month);
 
@@ -251,7 +251,7 @@ namespace QA_Project_1.Data.Repositories
 
         }
 
-        internal double MaxMonth(int year)
+/*        internal double MaxMonth(int year)
         {
 
 
@@ -275,6 +275,6 @@ namespace QA_Project_1.Data.Repositories
             return value, month;
 
 
-        }
+        }*/
     }
 }
