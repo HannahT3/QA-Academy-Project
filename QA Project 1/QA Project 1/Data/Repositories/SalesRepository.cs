@@ -122,7 +122,7 @@ namespace QA_Project_1.Data.Repositories
             
             
             MySqlCommand command = connection.CreateCommand();
-            command.CommandText = "SELECT SUM(quantity*price) FROM sales WHERE YEAR(DATE(saleDate)) = {@saleYear}"; //  ADD PREPARED STATEMENTS
+            command.CommandText = "SELECT SUM(quantity*price) FROM sales WHERE YEAR(DATE(saleDate)) = @saleYear"; 
             command.Parameters.AddWithValue("@saleYear", totalSalesYear);
             
 
@@ -241,12 +241,19 @@ namespace QA_Project_1.Data.Repositories
             connection.Open();
             command.Prepare();
             var avg = command.ExecuteScalar();
-            double avgMonth = Convert.ToDouble(avg);
-
-
-
             connection.Dispose();
-            return avgMonth;
+
+            if (avg is DBNull) 
+            {
+                double avgMonth = 0.0;
+                return avgMonth;
+            }
+            else{
+                double avgMonth = Convert.ToDouble(avg);
+                return avgMonth;
+            }
+                      
+            
 
 
         }

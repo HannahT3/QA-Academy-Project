@@ -27,6 +27,8 @@ namespace QA_Project_1.Controllers
 
             try
             {
+                Console.Clear();
+                Console.WriteLine("DATA ENTRY SELECTED");
                 Console.WriteLine("What is the product name?");
                 Console.Write("> ");
                 //user input of product name
@@ -84,7 +86,7 @@ namespace QA_Project_1.Controllers
                     {
                         Console.WriteLine(sale);
                     }
-                    Console.WriteLine("Press any key to continue");
+                    Console.WriteLine("Press any key to continue . .");
                     Console.ReadKey(); 
                 }
 
@@ -114,27 +116,27 @@ namespace QA_Project_1.Controllers
         {
             try
             {
-                    Console.WriteLine("Please enter the month and year you wish to view:");
-                    Console.WriteLine("Month (numeric, e.g. for January enter 1):");
-                    Console.Write("> ");
+                    
+                    Console.WriteLine("Month to view (numeric, e.g. for January enter 1):");
+                    Console.Write("Month > ");
                     int month = Convert.ToInt32(Console.ReadLine());
                     bool selectedMonth = Convert.ToBoolean(month);  
 
-                Console.WriteLine("Year:");
-                    Console.Write("> ");
+                Console.WriteLine("Year to view:");
+                    Console.Write("Year > ");
                     int year = Convert.ToInt32(Console.ReadLine());
                     bool selectedYear = Convert.ToBoolean(year);
-                   // bool selectedYear = int.TryParse(year, out int saleYear);
-                  //  bool selectedMonth = int.TryParse(month, out int saleMonth);
+                   
                     IEnumerable<Sales> salesInDb = salesService.ReadByMonth(year, month);
-                    if (selectedYear && selectedMonth) // &&msalesservice.Exists(selectedyear
+                    if (selectedYear && selectedMonth) 
                     {
 
                         foreach (var sale in salesInDb)
                         {
                             Console.WriteLine(sale);
                         }
-                        Console.WriteLine("Press any key to continue");
+                        Console.WriteLine();
+                        Console.WriteLine("Press any key to continue . .");
                         Console.ReadKey();
                     }
             }
@@ -167,7 +169,7 @@ namespace QA_Project_1.Controllers
             {
                 Console.WriteLine("Please enter the year you wish to view:");
 
-                Console.Write("> ");
+                Console.Write("Year > ");
                 int totalSalesYear = Convert.ToInt32(Console.ReadLine());
 
                 bool selectedYear = Convert.ToBoolean(totalSalesYear);
@@ -180,7 +182,7 @@ namespace QA_Project_1.Controllers
 
                 }
 
-                Console.WriteLine("Press any key to continue");
+                Console.WriteLine("Press any key to continue . .");
                 Console.ReadKey();
             }
             catch (FormatException e)
@@ -214,7 +216,7 @@ namespace QA_Project_1.Controllers
                 Console.WriteLine("Please enter the month you wish to view:");
 
                 Console.Write(" Month > ");
-                int month = Convert.ToInt32(Console.ReadLine()); //error handiling - words, consider converting words to numerical
+                int month = Convert.ToInt32(Console.ReadLine()); 
 
                 bool selectedYear = Convert.ToBoolean(year);
                 bool selectedMonth = Convert.ToBoolean(month);
@@ -273,7 +275,7 @@ namespace QA_Project_1.Controllers
                     {
                         Console.WriteLine(sale);
                     }
-                    Console.WriteLine("Press any key to continue");
+                    Console.WriteLine("Press any key to continue . .");
                     Console.ReadKey();
                 }
             }
@@ -364,9 +366,9 @@ namespace QA_Project_1.Controllers
                 Console.Write(" Month > ");
                 int month = Convert.ToInt32(Console.ReadLine());
 
-                Console.WriteLine("Please enter the past number of previous years you wish to view:");
+                Console.WriteLine("Please enter the past number of years you wish to view:");
 
-                Console.Write("> ");
+                Console.Write(" > ");
                 int yearsPrev = Convert.ToInt32(Console.ReadLine());
 
                 bool selectedMonth = Convert.ToBoolean(month);
@@ -376,7 +378,7 @@ namespace QA_Project_1.Controllers
                 if (selectedMonth && previousYears)
                 {
 
-                    Console.WriteLine($"Average sales for the past {yearsPrev} years during {NumToMonth(month)}: {salesService.AverageGivenMonth(month, yearsPrev)}");
+                    Console.WriteLine($"Average sales during {NumToMonth(month)} for the past {yearsPrev} years : {salesService.AverageGivenMonth(month, yearsPrev)}");
                 }
 
                 Console.WriteLine("Press any key to continue . .");
