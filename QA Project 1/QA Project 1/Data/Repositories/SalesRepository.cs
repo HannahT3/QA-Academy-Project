@@ -54,11 +54,11 @@ namespace QA_Project_1.Data.Repositories
 
        
 
-        internal IEnumerable<Sales> ReadByYear(int saleYear)
+        internal IEnumerable<Sales> ReadByYear(int year)
         {
             MySqlCommand command = connection.CreateCommand();
             command.CommandText = "SELECT * FROM sales WHERE YEAR(saleDate) = @saleYear";
-            command.Parameters.AddWithValue("@saleYear", saleYear);
+            command.Parameters.AddWithValue("@saleYear", year);
 
             connection.Open();
             command.Prepare();
@@ -85,12 +85,12 @@ namespace QA_Project_1.Data.Repositories
 
         }
 
-        internal IEnumerable<Sales> ReadByMonth(int saleYear, int saleMonth)
+        internal IEnumerable<Sales> ReadByMonth(int year, int month)
         {
             MySqlCommand command = connection.CreateCommand();
             command.CommandText = "SELECT * FROM sales WHERE YEAR(DATE(saleDate)) = @saleYear AND MONTH(DATE(saleDate))= @saleMonth";
-            command.Parameters.AddWithValue("@saleYear", saleYear);
-            command.Parameters.AddWithValue("@saleMonth", saleMonth);
+            command.Parameters.AddWithValue("@saleYear", year);
+            command.Parameters.AddWithValue("@saleMonth", month);
 
             connection.Open();
             command.Prepare();
@@ -117,13 +117,13 @@ namespace QA_Project_1.Data.Repositories
             
         }
 
-        internal double TotalSalesYear(int saleYear)
+        internal double TotalSalesYear(int totalSalesYear)
         {
             
             
             MySqlCommand command = connection.CreateCommand();
-            command.CommandText = "SELECT SUM(quantity*price) FROM sales WHERE YEAR(DATE(saleDate)) = {@saleYear}"; //  ADD PREPARED STATEMENTS
-            command.Parameters.AddWithValue("@saleYear", saleYear);
+            command.CommandText = "SELECT SUM(quantity*price) FROM sales WHERE YEAR(DATE(saleDate)) = @saleYear"; 
+            command.Parameters.AddWithValue("@saleYear", totalSalesYear);
             
 
             connection.Open();
@@ -139,14 +139,14 @@ namespace QA_Project_1.Data.Repositories
             
         }
 
-        internal double TotalSalesMonth(int saleYear, int saleMonth)
+        internal double TotalSalesMonth(int year, int month)
         {
 
 
             MySqlCommand command = connection.CreateCommand();
             command.CommandText = "SELECT SUM(quantity*price) FROM sales WHERE YEAR(DATE(saleDate)) = @saleYear AND MONTH(DATE(saleDate))= @saleMonth"; 
-            command.Parameters.AddWithValue("@saleYear", saleYear);
-            command.Parameters.AddWithValue("@saleMonth", saleMonth);
+            command.Parameters.AddWithValue("@saleYear", year);
+            command.Parameters.AddWithValue("@saleMonth", month);
 
             connection.Open();
             command.Prepare();
@@ -161,5 +161,127 @@ namespace QA_Project_1.Data.Repositories
 
         }
 
+        internal IEnumerable<Sales> SalesBetweenYears(int year1, int year2)
+        {
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT * FROM sales WHERE YEAR(DATE(saleDate)) >= @year1 AND YEAR(DATE(saleDate)) <= @year2";
+            command.Parameters.AddWithValue("@year1", year1);
+            command.Parameters.AddWithValue("@year2", year2);
+
+            connection.Open();
+            command.Prepare();
+            MySqlDataReader reader = command.ExecuteReader();
+
+            IList<Sales> sales = new List<Sales>();
+
+            while (reader.Read())
+            {
+                int id = reader.GetFieldValue<int>("saleID");
+                string name = reader.GetFieldValue<string>("prodName");
+                int quantity = reader.GetFieldValue<int>("quantity");
+                decimal price = reader.GetFieldValue<decimal>("price");
+                DateTime saleID = reader.GetFieldValue<DateTime>("saleDate");
+
+                Sales sale = new Sales() { SaleID = id, Name = name, Quantity = quantity, Price = price, SaleDate = saleID };
+                sales.Add(sale);
+
+            }
+
+            connection.Dispose();
+            return sales;
+
+
+        }
+
+        /*internal IEnumerable<Sales> SalesBetweenMonths(int year1, int month1, int year2, int month2)
+        {
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT * FROM sales WHERE YEAR(DATE(saleDate))>=@year1 AND MONTH(DATE(saleDate))>=@month1 AND YEAR(DATE(saleDate))<=@year2 MONTH(DATE(saleDate))<=@month2";
+            command.Parameters.AddWithValue("@year1", year1);
+            command.Parameters.AddWithValue("@month1", month1);
+            command.Parameters.AddWithValue("@year2", year2);
+            command.Parameters.AddWithValue("@month2", month2);
+
+            connection.Open();
+            command.Prepare();
+            MySqlDataReader reader = command.ExecuteReader();
+
+            IList<Sales> sales = new List<Sales>();
+
+            while (reader.Read())
+            {
+                int id = reader.GetFieldValue<int>("saleID");
+                string name = reader.GetFieldValue<string>("prodName");
+                int quantity = reader.GetFieldValue<int>("quantity");
+                decimal price = reader.GetFieldValue<decimal>("price");
+                DateTime saleID = reader.GetFieldValue<DateTime>("saleDate");
+
+                Sales sale = new Sales() { SaleID = id, Name = name, Quantity = quantity, Price = price, SaleDate = saleID };
+                sales.Add(sale);
+
+            }
+
+            connection.Dispose();
+            return sales;
+
+
+        }*/
+
+
+      
+        internal double AverageGivenMonth(int month, int yearsPrev)
+        {
+
+
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT AVG(quantity* price) FROM sales WHERE YEAR(DATE(saleDate)) >= YEAR(CURDATE()) - @years AND MONTH(saleDate)=@month";
+            command.Parameters.AddWithValue("@years", yearsPrev);
+            command.Parameters.AddWithValue("@month", month);
+
+            connection.Open();
+            command.Prepare();
+            var avg = command.ExecuteScalar();
+            connection.Dispose();
+
+            if (avg is DBNull) 
+            {
+                double avgMonth = 0.0;
+                return avgMonth;
+            }
+            else{
+                double avgMonth = Convert.ToDouble(avg);
+                return avgMonth;
+            }
+                      
+            
+
+
+        }
+
+/*        internal double MaxMonth(int year)
+        {
+
+
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT MAX(quantity*price), MONTH(saleDate) FROM sales  WHERE YEAR(DATE(saleDate)) = @year;";
+            command.Parameters.AddWithValue("@year", year);
+            
+
+            connection.Open();
+            command.Prepare();
+            MySqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                double value = reader.GetFieldValue<double>("MAX(quantity*price)");
+                int month = reader.GetFieldValue<int>("MONTH(saleDate");
+
+
+            }
+
+            connection.Dispose();
+            return value, month;
+
+
+        }*/
     }
 }
