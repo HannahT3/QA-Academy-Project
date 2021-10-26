@@ -29,12 +29,11 @@ namespace QA_Project_1.Menus
                     break;
                 case "QUIT" or "3":
                     break;
+                default:
+                    Console.WriteLine("Please enter a valid option e.g. for data entry enter 1");
+                    break;
 
-
-                    /* ERROR HANDLING
-                        Console.WriteLine("Please enter a valid option!");
-                        //loop back
-                        break;*/
+                    
             }
         }
 
@@ -50,7 +49,7 @@ namespace QA_Project_1.Menus
                 Console.Clear();
                 //print the menu
                 Console.WriteLine("~~~~DATA ENTRY~~~~");
-                Console.WriteLine("1. Enter Data \n 2.Quit"); //add back to main menu
+                Console.WriteLine("1. Enter Data \n 2. Back to main menu \n 3. Quit"); //add back to main menu
 
                 input = Console.ReadLine();
                 switch (input.ToUpper())
@@ -58,11 +57,12 @@ namespace QA_Project_1.Menus
                     case "ENTERDATA" or "ENTER DATA" or "1":
                         controller.Create();
                         break;
-                    //case "MAINMENU" or "MAIN MENU" or "2":
-                    // DataMenus.EnterMenu();
-                    //break;
+                    case "MAINMENU" or "MAIN MENU" or "2":
+                        Console.Clear();
+                        EnterMenu();
+                        break;
                     //case "MAINMENU" or 
-                    case "QUIT" or "2":
+                    case "QUIT" or "3":
                         inMenu = false;
                         break;
 
@@ -93,7 +93,7 @@ namespace QA_Project_1.Menus
                 Console.Clear();
                 //print the menu
                 Console.WriteLine("~~~~REPORTS~~~~");
-                Console.WriteLine("1. View sales by year \n 2. View sales by month and year \n 3. View total sales by year \n 4. View Total sales by year and month \n 5. View all sales between two specified years \n 6. View the average sales for a given month (over specified number of years) \n 7.Quit");
+                Console.WriteLine("1. View sales by year \n 2. View sales by month and year \n 3. View total sales by year \n 4. View Total sales by year and month \n 5. View all sales between two specified years \n 6. View the average sales for a given month (over specified number of years) \n 7. Back to main menu \n 8. Quit");
 
                 Console.WriteLine("Please enter your choice (enter the option number e.g. 1 for view sales by year):");
                 Console.Write("> ");
@@ -119,7 +119,11 @@ namespace QA_Project_1.Menus
                     case "6":
                         controller.AverageGivenMonth();
                         break;
-                    case "QUIT" or "7":
+                    case "7":
+                        Console.Clear();
+                        EnterMenu();
+                        break;
+                    case "QUIT" or "8":
                         inMenu = false;
                         break;
 

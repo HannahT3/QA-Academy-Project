@@ -361,10 +361,10 @@ namespace QA_Project_1.Controllers
             {
                 Console.WriteLine("Please enter the month you wish to view:");
 
-                Console.Write("> ");
+                Console.Write(" Month > ");
                 int month = Convert.ToInt32(Console.ReadLine());
 
-                Console.WriteLine("Please enter the past ...  previous years you wish to view:");
+                Console.WriteLine("Please enter the past number of previous years you wish to view:");
 
                 Console.Write("> ");
                 int yearsPrev = Convert.ToInt32(Console.ReadLine());
