@@ -7,8 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\SalesFile.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\SalesFile.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Exceptions\" />
-    <Folder Include="Resources\" />
   </ItemGroup>
 
   <ItemGroup>
