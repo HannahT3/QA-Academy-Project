@@ -14,6 +14,7 @@ namespace QA_Project_1.Menus
     {
         public static void EnterMenu()
         {
+            //Main menu on point of entry
             Console.WriteLine("~~~~MAIN MENU~~~~");
 
             Console.Write("Please pick an option: \n 1. Data entry \n 2. Reports \n 3. Quit \n");
@@ -42,6 +43,7 @@ namespace QA_Project_1.Menus
 
         public static void DataEntryMenu()
         {
+            //Menu to either enter data, go back to initial menu or quit the application 
             SalesController controller = new SalesController(new SalesService(new SalesRepository(SqlUtils.GetConnection())));
             bool inMenu = true;
             string input;
@@ -91,6 +93,7 @@ namespace QA_Project_1.Menus
 
         public static void ReportsMenu()
         {
+            //Menu where options with view sales reports
             SalesController controller = new SalesController(new SalesService(new SalesRepository(SqlUtils.GetConnection())));
             bool inMenu = true;
             string input;
