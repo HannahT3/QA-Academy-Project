@@ -50,9 +50,9 @@ namespace QA_Project_1.Menus
 
             while (inMenu)
             {
-                //clear the screen
+                
                 Console.Clear();
-                //print the menu
+                
                 Console.WriteLine("~~~~DATA ENTRY~~~~");
                 Console.WriteLine("1. Enter Data \n 2. Back to main menu \n 3. Quit"); //add back to main menu
 
@@ -93,16 +93,16 @@ namespace QA_Project_1.Menus
 
         public static void ReportsMenu()
         {
-            //Menu where options with view sales reports
+            //Menu to view sales reports
             SalesController controller = new SalesController(new SalesService(new SalesRepository(SqlUtils.GetConnection())));
             bool inMenu = true;
             string input;
 
             while (inMenu)
             {
-                //clear the screen
+               
                 Console.Clear();
-                //print the menu
+                
                 Console.WriteLine("~~~~REPORTS~~~~");
                 Console.WriteLine("1. View sales by year \n 2. View sales by month and year \n 3. View total sales by year \n 4. View total sales by year and month \n 5. View all sales between two specified years \n 6. View the average sales for a given month (over a specified number of years) \n 7. Back to main menu \n 8. Quit");
 
@@ -112,7 +112,7 @@ namespace QA_Project_1.Menus
                 input = Console.ReadLine();
                 switch (input.ToUpper())
                 {
-                    //ADD MORE CASE WORDING
+                    
                     case "YEAR" or "1":
                         controller.ReadByYear();
                         break;

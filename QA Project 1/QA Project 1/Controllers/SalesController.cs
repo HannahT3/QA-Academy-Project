@@ -27,11 +27,12 @@ namespace QA_Project_1.Controllers
 
             try
             {
+                //if in the correct format, sale is created in database
                 Console.Clear();
-                Console.WriteLine("DATA ENTRY SELECTED");
+                Console.WriteLine("--DATA ENTRY SELECTED--");
                 Console.WriteLine("What is the product name?");
                 Console.Write("> ");
-                //user input of product name
+                
                 string name = Console.ReadLine();
                 Console.WriteLine("What is the quantity of the item?");
                 Console.Write("> ");
@@ -74,12 +75,13 @@ namespace QA_Project_1.Controllers
         {
             try
             {
+                //views sales in chosen year
                 Console.WriteLine("Please enter the year you wish to view:");
                 Console.Write("> ");
                 int year = Convert.ToInt32(Console.ReadLine());
                 bool selectedYear = Convert.ToBoolean(year);
                 IEnumerable<Sales> salesInDb = salesService.ReadByYear(year);
-                if (selectedYear) // &&msalesservice.Exists(selectedyear
+                if (selectedYear) 
                 {
                 
                     foreach (var sale in salesInDb)
@@ -116,7 +118,7 @@ namespace QA_Project_1.Controllers
         {
             try
             {
-                    
+                    //view sales in chosen month & year
                     Console.WriteLine("Month to view (numeric, e.g. for January enter 1):");
                     Console.Write("Month > ");
                     int month = Convert.ToInt32(Console.ReadLine());
@@ -167,6 +169,7 @@ namespace QA_Project_1.Controllers
 
             try
             {
+                //views total sales in chosen year
                 Console.WriteLine("Please enter the year you wish to view:");
 
                 Console.Write("Year > ");
@@ -208,6 +211,7 @@ namespace QA_Project_1.Controllers
         {
             try
             {
+                //views total sales in chosen month and year
                 Console.WriteLine("Please enter the year you wish to view:");
 
                 Console.Write("Year > ");
@@ -256,7 +260,7 @@ namespace QA_Project_1.Controllers
         {
             try
             {
-                //Console.WriteLine("Please enter the firstmonth and year you wish to view:");
+               //views sale between two chosen years
                 Console.WriteLine("Initial year:");
                 Console.Write("Initial Year > ");
                 int year1 = Convert.ToInt32(Console.ReadLine());
@@ -268,7 +272,7 @@ namespace QA_Project_1.Controllers
                 bool secondYear = Convert.ToBoolean(year2);
                 
                 IEnumerable<Sales> salesInDb = salesService.SalesBetweenYears(year1, year2);
-                if (firstYear && secondYear) // &&msalesservice.Exists(selectedyear
+                if (firstYear && secondYear)
                 {
 
                     foreach (var sale in salesInDb)
@@ -300,62 +304,7 @@ namespace QA_Project_1.Controllers
 
         }
 
-        /* internal void SalesBetweenMonths()
-         {
-             try
-             {
-                 //Console.WriteLine("Please enter the firstmonth and year you wish to view:");
-                 Console.WriteLine("Initial year:");
-                 Console.Write("> ");
-                 int year1 = Convert.ToInt32(Console.ReadLine());
-                 bool firstYear = Convert.ToBoolean(year1);
-                 Console.WriteLine("Initial month:");
-                 Console.Write("> ");
-                 int month1 = Convert.ToInt32(Console.ReadLine());
-                 bool firstMonth = Convert.ToBoolean(month1);
-
-
-                 Console.WriteLine("Final year:");
-                 Console.Write("> ");
-                 int year2 = Convert.ToInt32(Console.ReadLine());
-                 bool secondYear = Convert.ToBoolean(year2);
-                 Console.WriteLine("Final month:");
-                 Console.Write("> ");
-                 int month2 = Convert.ToInt32(Console.ReadLine());
-                 bool secondMonth = Convert.ToBoolean(month2);
-
-                 IEnumerable<Sales> salesInDb = salesService.SalesBetweenMonths(year1, month1, year2, month2);
-                 if (firstYear && firstMonth && secondYear && secondMonth) // &&msalesservice.Exists(selectedyear
-                 {
-
-                     foreach (var sale in salesInDb)
-                     {
-                         Console.WriteLine(sale);
-                     }
-                     Console.WriteLine("Press any key to continue");
-                     Console.ReadKey();
-                 }
-             }
-             catch (FormatException e)
-             {
-                 Console.WriteLine(e.Message);
-
-                 Console.WriteLine("Press any key to continue . .");
-                 Console.ReadKey();
-
-             }
-             catch (ArgumentNullException e)
-             {
-                 Console.WriteLine(e.Message);
-
-                 Console.WriteLine("Press any key to continue . .");
-                 Console.ReadKey();
-
-             }
-
-
-
-         } */
+      
 
         internal void AverageGivenMonth()
         {
@@ -405,47 +354,7 @@ namespace QA_Project_1.Controllers
 
         }
 
-        /* internal void MaxMonth()
-         {
-             try
-             {
-                 Console.WriteLine("Please enter the year you wish to view:");
-
-                 Console.Write("> ");
-                 int year = Convert.ToInt32(Console.ReadLine());
-
-                 bool selectedYear = Convert.ToBoolean(year);
-
-
-                 if (selectedYear)
-                 {
-
-                     Console.WriteLine($"In {year}, the highest sales were made in {salesService.MaxMonth(year)}");
-                 }
-
-                 Console.WriteLine("Press any key to continue . .");
-                 Console.ReadKey();
-
-
-             }
-             catch (FormatException e)
-             {
-                 Console.WriteLine(e.Message);
-
-                 Console.WriteLine("Press any key to continue . .");
-                 Console.ReadKey();
-             }
-             catch (ArgumentNullException e)
-             {
-                 Console.WriteLine(e.Message);
-
-                 Console.WriteLine("Press any key to continue . .");
-                 Console.ReadKey();
-
-             }
-
-
-         }*/
+       
         internal static string NumToMonth(int numMonth)
         {
             string monthName;
@@ -499,7 +408,7 @@ namespace QA_Project_1.Controllers
             return monthName;
         }
 
-        internal static int MonthNameToNum(string monthName)
+       /* internal static int MonthNameToNum(string monthName)
         {
             int num;
 
@@ -550,6 +459,6 @@ namespace QA_Project_1.Controllers
 
             }
             return num;
-        }
+        }*/
     }
 }
