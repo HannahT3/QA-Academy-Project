@@ -357,6 +357,7 @@ namespace QA_Project_1.Controllers
        
         internal static string NumToMonth(int numMonth)
         {
+            //converts month number to name
             string monthName;
 
             switch (numMonth)
