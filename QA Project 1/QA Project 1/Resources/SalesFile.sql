@@ -1,0 +1,18 @@
+SHOW databases;
+
+CREATE DATABASE IF NOT EXISTS salesdb;
+
+CREATE TABLE IF NOT EXISTS sales(
+saleID INT AUTO_INCREMENT,
+prodName VARCHAR(128) NOT NULL,
+quantity INT NOT NULL,
+price DECIMAL (6,2) NOT NULL, 
+saleDate DATETIME NOT NULL, 
+PRIMARY KEY(saleID));
+
+USE salesdb;
+DESCRIBE sales;
+SELECT * FROM sales;
+
+
+
